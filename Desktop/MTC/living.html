@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Balcony | MTC Spaces</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --ivory:#F7F2EA;
+  --charcoal:#1A1D24;
+  --gold:#C2E03A;
+  --light-text:#6B7280;
+  --border:#E5DED2;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-family:'DM Sans',sans-serif;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:70vh;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
+
+.hero-content{
+  position:absolute;
+  bottom:80px;
+  left:80px;
+  color:white;
+}
+
+.hero-content p{
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.hero-content h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:92px;
+  font-weight:300;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+  position:fixed;
+  top:24px;
+  left:24px;
+  z-index:999;
+  text-decoration:none;
+  background:white;
+  color:var(--charcoal);
+  padding:14px 24px;
+  border-radius:999px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  transition:.3s;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* INTRO */
+
+.room-intro{
+  max-width:900px;
+  margin:100px auto 60px;
+  text-align:center;
+  padding:0 24px;
+}
+
+.room-intro span{
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--light-text);
+}
+
+.room-intro h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;
+  margin-top:20px;
+  margin-bottom:20px;
+  font-weight:300;
+}
+
+.room-intro p{
+  color:var(--light-text);
+  line-height:1.8;
+}
+
+/* GALLERY */
+
+.gallery{
+  width:min(1400px,90%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  padding-bottom:120px;
+}
+
+.gallery-card{
+  overflow:hidden;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 20px 60px rgba(0,0,0,.06);
+  transition:.4s;
+}
+
+.gallery-card img{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.23,1,.32,1);
+}
+
+.gallery-card:hover{
+  transform:translateY(-8px);
+}
+
+.gallery-card:hover img{
+  transform:scale(1.08);
+}
+
+/* ANIMATION */
+
+.fade-up{
+  opacity:0;
+  transform:translateY(50px);
+  animation:fadeUp .8s ease forwards;
+}
+
+.gallery-card:nth-child(2){animation-delay:.1s;}
+.gallery-card:nth-child(3){animation-delay:.2s;}
+.gallery-card:nth-child(4){animation-delay:.3s;}
+.gallery-card:nth-child(5){animation-delay:.4s;}
+.gallery-card:nth-child(6){animation-delay:.5s;}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:1024px){
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-content h1{
+    font-size:64px;
+  }
+}
+
+@media(max-width:768px){
+
+  .gallery{
+    grid-template-columns:1fr;
+  }
+
+  .hero-content{
+    left:24px;
+    bottom:40px;
+  }
+
+  .hero-content h1{
+    font-size:48px;
+  }
+
+  .room-intro h2{
+    font-size:42px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">
+← Back to Home
+</a>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="https://drive.google.com/thumbnail?id=1wucZgYQKw-ddCjZTNijtmrwF4CnaKGDJ&sz=w1600">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+<p>MTC SPACES</p>
+<h1>Living Room</h1>
+</div>
+
+</section>
+
+<!-- INTRO -->
+
+<section class="room-intro">
+
+<span>Luxury Living Collection</span>
+
+<h2>Living Room Designs</h2>
+
+<p>
+Experience thoughtfully designed living spaces that blend
+comfort, sophistication and timeless elegance. Our living room
+interiors are crafted to create welcoming environments for
+family gatherings, relaxation and everyday luxury.
+</p>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="gallery">
+
+<div class="gallery-card fade-up">
+<img src="https://drive.google.com/thumbnail?id=1u_LQtg_rY6799qGMDT6dVgDPc9A2KvwL&sz=w1600" alt="Living Room Design 1">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="https://drive.google.com/thumbnail?id=1yugPKtTnFW59LS-9TNgtQle1Y6Jtp6i7&sz=w1600" alt="Living Room Design 2">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="https://drive.google.com/thumbnail?id=1r49h_t9mSK06Yt1YTXb7feG1vLHstDDY&sz=w1600" alt="Living Room Design 3">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="https://drive.google.com/thumbnail?id=1aTXF3KEp2vEAoz9taA4R7IT7MXA5PdoZ&sz=w1600" alt="Living Room Design 4">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="https://drive.google.com/thumbnail?id=1VyLqber4zk9b2CiYVi2vHGEwwYVdOges&sz=w1600" alt="Living Room Design 5">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="https://drive.google.com/thumbnail?id=1VyLqber4zk9b2CiYVi2vHGEwwYVdOges&sz=w1600" alt="Living Room Design 6">
+</div>
+
+</section>
+

@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTC Spaces — Where Innovation Meets Precision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ivory: #F7F2EA;
+  --beige: #EBE3D4;
+  --charcoal: #1A1D24;
+  --gold: #C2E03A;
+  --gold-deep: #A4BF25;
+  --olive: #5E626B;
+  --bronze: #A4BF25;
+  --light-text: #5E626B;
+  --border: rgba(194,224,58,0.25);
+  --card: #FBF8F2;
+  --muted: #E8E0D3;
+  --border-solid: #D8CFC2;
+  --ink: #1A1D24;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ivory);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: multiply;
+}
+.cursor-follower {
+  width: 40px; height: 40px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), width 0.3s, height 0.3s, border-color 0.3s;
+}
+.cursor-expand { transform: scale(2.5) !important; border-color: transparent !important; background: rgba(194,224,58,0.1) !important; }
+
+/* NAVIGATION */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 28px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+}
+nav.scrolled {
+  background: rgba(247,242,234,0.95);
+  backdrop-filter: blur(20px);
+  padding: 18px 60px;
+  border-bottom: 1px solid var(--border-solid);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  color: var(--ivory);
+  text-decoration: none;
+  transition: color 0.4s;
+}
+nav.scrolled .nav-logo { color: var(--charcoal); }
+.nav-links {
+  display: flex;
+  gap: 44px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(247,242,234,0.8);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+nav.scrolled .nav-links a { color: var(--light-text); }
+.nav-links a:hover { color: var(--gold-deep); }
+.nav-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 12px 28px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--charcoal); color: var(--ivory); }
+
+/* HERO */
+#hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0f1117 0%, #1a1d24 40%, #141720 100%);
+  z-index: 0;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(194,224,58,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(194,224,58,0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: 1;
+}
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(10,8,5,0.7) 100%);
+  z-index: 2;
+}
+
+/* Floating architectural elements */
+.hero-float {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  animation: floatIn 2s forwards;
+}
+.float-1 {
+  top: 15%; right: 8%;
+  width: 280px; height: 360px;
+  background: linear-gradient(135deg, rgba(194,224,58,0.12), transparent);
+  border: 1px solid rgba(194,224,58,0.18);
+  animation-delay: 1.5s;
+}
+.float-2 {
+  bottom: 20%; left: 6%;
+  width: 160px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation-delay: 2s;
+}
+.float-3 {
+  top: 30%; left: 10%;
+  width: 2px; height: 120px;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  animation-delay: 2.2s;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 1100px;
+  padding: 0 40px;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 8vw, 120px);
+  font-weight: 300;
+  line-height: 0.92;
+  color: var(--ivory);
+  letter-spacing: -2px;
+  margin-bottom: 36px;
+}
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+.hero-title .line span {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: lineReveal 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-title .line:nth-child(1) span { animation-delay: 0.8s; }
+.hero-title .line:nth-child(2) span { animation-delay: 1.0s; }
+.hero-title .line:nth-child(3) span { animation-delay: 1.2s; }
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+@keyframes lineReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.6);
+  letter-spacing: 1px;
+  max-width: 520px;
+  margin: 0 auto 52px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 1s 1.6s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 1s 1.9s forwards;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  padding: 16px 44px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 60px rgba(194,224,58,0.25);
+}
+
+.btn-secondary {
+  color: var(--ivory);
+  padding: 16px 44px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(247,242,234,0.3);
+  transition: all 0.4s;
+  display: inline-block;
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 1s 2.4s forwards;
+}
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+.hero-scroll span {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(247,242,234,0.4);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* SECTION UTILITIES */
+section { position: relative; }
+
+/* Smooth section transitions — blended top fade on dark→light and light→dark */
+#projects::before,
+#philosophy::before,
+#services::before,
+#testimonials::before,
+#experience::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, var(--charcoal) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+#manifesto::before,
+#trust::before,
+#journey::before,
+#factory::before,
+#leadership::before,
+#booking::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, var(--ivory) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+/* These dark sections follow other dark sections — use matching dark fade */
+#factory::before {
+  background: linear-gradient(180deg, var(--charcoal) 0%, transparent 100%);
+}
+#booking::before {
+  background: linear-gradient(180deg, var(--ivory) 0%, transparent 100%);
+}
+#leadership::before {
+  background: linear-gradient(180deg, var(--beige) 0%, transparent 100%);
+}
+
+.section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold-deep);
+}
+/* On dark backgrounds keep full lime */
+#manifesto .section-label,
+#trust .section-label,
+#journey .section-label,
+#factory .section-label,
+#leadership .section-label,
+#booking .section-label {
+  color: var(--gold);
+}
+#manifesto .section-label::before,
+#trust .section-label::before,
+#journey .section-label::before,
+#factory .section-label::before,
+#leadership .section-label::before,
+#booking .section-label::before {
+  background: var(--gold);
+}
+
+/* SECTION 2 — MANIFESTO */
+#manifesto {
+  padding: 160px 0;
+  background: var(--charcoal);
+  overflow: hidden;
+}
+.manifesto-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+.manifesto-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4vw, 58px);
+  font-weight: 300;
+  line-height: 1.3;
+  color: rgba(247,242,234,0.12);
+  margin-bottom: 48px;
+  transition: color 0.8s, transform 0.8s;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transform: translateX(-30px);
+}
+.manifesto-line.visible {
+  color: var(--ivory);
+  transform: translateX(0);
+}
+.manifesto-line em {
+  font-style: italic;
+  color: var(--gold);
+}
+.manifesto-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  min-width: 36px;
+}
+
+/* SECTION 3 — PROJECTS */
+#projects {
+  padding: 120px 0;
+  background: var(--ivory);
+}
+.section-header {
+  padding: 0 60px;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 5vw, 80px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--charcoal);
+  max-width: 600px;
+}
+.section-title em { font-style: italic; color: var(--gold-deep); }
+.view-all {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--charcoal);
+  padding-bottom: 4px;
+  transition: all 0.3s;
+}
+.view-all:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.project-card {
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+}
+.project-card:first-child {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+.project-img {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.23,1,0.32,1);
+  display: block;
+}
+.project-card:hover .project-img { transform: scale(1.06); }
+/* Placeholder project images using CSS gradients */
+.project-visual {
+  width: 100%;
+  min-height: 480px;
+  transition: transform 0.8s cubic-bezier(0.23,1,0.32,1);
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.project-card:hover .project-visual { transform: scale(1.06); }
+
+.pv-1 { background: linear-gradient(135deg, #1a1d24 0%, #252934 40%, #1e2230 100%); }
+.pv-2 { background: linear-gradient(135deg, #1a2220 0%, #222e2a 50%, #1a2420 100%); }
+.pv-3 { background: linear-gradient(135deg, #1e1d2a 0%, #292840 50%, #1a1928 100%); }
+.pv-4 { background: linear-gradient(135deg, #222018 0%, #2d2a1c 50%, #1c1a14 100%); }
+
+.pv-room {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.room-illustration {
+  width: 70%;
+  height: 60%;
+  position: relative;
+}
+/* Floor */
+.room-floor {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 35%;
+  background: linear-gradient(180deg, rgba(194,224,58,0.1) 0%, rgba(194,224,58,0.18) 100%);
+  transform: perspective(400px) rotateX(30deg);
+  transform-origin: bottom;
+}
+.room-wall-back {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 70%;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.room-furniture {
+  position: absolute;
+  bottom: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 30%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.room-light {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(194,224,58,0.7), transparent);
+  box-shadow: 0 0 30px rgba(194,224,58,0.2);
+}
+
+.project-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 48px 40px;
+  background: linear-gradient(0deg, rgba(15,10,5,0.85) 0%, transparent 100%);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+}
+.project-card:hover .project-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.project-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: block;
+}
+.project-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--ivory);
+  margin-bottom: 8px;
+}
+.project-loc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(247,242,234,0.5);
+  letter-spacing: 1px;
+}
+
+/* Bottom strip info */
+.project-label {
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
+}
+.pl-tag {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: 'DM Sans', sans-serif;
+}
+.pl-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ivory);
+}
+
+/* SECTION 4 — TRUST STATS */
+#trust {
+  background: var(--charcoal);
+  padding: 120px 60px;
+}
+.trust-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 100px;
+}
+.trust-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--ivory);
+}
+.trust-intro em { font-style: italic; color: var(--gold); }
+.trust-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.5);
+  line-height: 1.8;
+  padding-top: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(194,224,58,0.15);
+}
+.stat-card {
+  background: #1e2230;
+  padding: 52px 40px;
+  transition: background 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.5s cubic-bezier(0.23,1,0.32,1);
+}
+.stat-card:hover::before { transform: scaleX(1); }
+.stat-card:hover { background: #252934; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-unit {
+  font-size: 28px;
+  color: var(--bronze);
+}
+.stat-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(247,242,234,0.5);
+  margin-bottom: 12px;
+}
+.stat-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.3);
+  line-height: 1.6;
+}
+
+/* SECTION 5 — PHILOSOPHY */
+#philosophy {
+  padding: 160px 60px;
+  background: var(--beige);
+}
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.philosophy-text .section-label { margin-bottom: 32px; }
+.philosophy-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 4.5vw, 72px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin-bottom: 40px;
+}
+.philosophy-headline em { font-style: italic; color: var(--gold); }
+.philosophy-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--light-text);
+  line-height: 1.9;
+  margin-bottom: 48px;
+}
+.philosophy-visual {
+  position: relative;
+  height: 600px;
+}
+.phil-img-main {
+  position: absolute;
+  top: 0; right: 0;
+  width: 85%;
+  height: 80%;
+  background: linear-gradient(135deg, #1a1d24 0%, #252934 60%, #1e2230 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.phil-img-accent {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 55%;
+  height: 45%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  border: 4px solid var(--ivory);
+}
+.phil-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Interior pattern for phil visual */
+.arch-lines {
+  width: 80%;
+  height: 80%;
+  position: relative;
+}
+.arch-v {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(194,224,58,0.2);
+}
+.arch-h {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: rgba(194,224,58,0.2);
+}
+.arch-circle {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 1px solid rgba(194,224,58,0.3);
+}
+.arch-circle-2 {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(194,224,58,0.12);
+}
+
+/* SECTION 6 — SERVICES */
+#services {
+  padding: 120px 0;
+  background: var(--ivory);
+  overflow: hidden;
+}
+.services-header {
+  padding: 0 60px;
+  margin-bottom: 80px;
+}
+.services-scroll-track {
+  overflow-x: auto;
+  display: flex;
+  gap: 2px;
+  padding: 0 60px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: ew-resize;
+}
+.services-scroll-track::-webkit-scrollbar { display: none; }
+.service-tile {
+  min-width: 360px;
+  height: 500px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px 36px;
+  cursor: none;
+}
+.service-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+.service-tile:hover .service-bg { transform: scale(1.06); }
+
+
+.service-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(15,10,5,0.8) 0%, rgba(15,10,5,0.2) 60%, transparent 100%);
+}
+.service-content {
+  position: relative;
+  z-index: 2;
+}
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: rgba(194,224,58,0.25);
+  margin-bottom: 12px;
+  display: block;
+}
+.service-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--ivory);
+  margin-bottom: 12px;
+}
+.service-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(247,242,234,0.5);
+  line-height: 1.6;
+  max-width: 260px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s, opacity 0.4s;
+  opacity: 0;
+}
+.service-tile:hover .service-desc {
+  max-height: 80px;
+  opacity: 1;
+}
+.service-arrow {
+  position: absolute;
+  top: 32px; right: 32px;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(194,224,58,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.service-tile:hover .service-arrow {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.service-arrow svg { width: 16px; height: 16px; stroke: var(--ivory); }
+
+/* SECTION 7 — JOURNEY */
+#journey {
+  padding: 160px 60px;
+  background: var(--charcoal);
+}
+.journey-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 100px;
+  align-items: start;
+}
+.journey-left .section-label { color: var(--gold); }
+.journey-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 300;
+  color: var(--ivory);
+  line-height: 1.15;
+}
+.journey-title em { font-style: italic; color: var(--gold); }
+.journey-steps {
+  position: relative;
+  padding-left: 60px;
+}
+.journey-line {
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  bottom: 20px;
+  width: 1px;
+  background: rgba(194,224,58,0.12);
+}
+.journey-progress {
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  width: 1px;
+  background: var(--gold);
+  height: 0%;
+  transition: height 1.5s cubic-bezier(0.23,1,0.32,1);
+}
+.step {
+  position: relative;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(194,224,58,0.08);
+  transition: all 0.4s;
+}
+.step:last-child { border-bottom: none; }
+.step-dot {
+  position: absolute;
+  left: -52px;
+  top: 52px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(194,224,58,0.25);
+  background: transparent;
+  transition: all 0.4s;
+  z-index: 1;
+}
+.step.active .step-dot {
+  border-color: var(--gold);
+  background: var(--gold);
+  box-shadow: 0 0 20px rgba(194,224,58,0.35);
+}
+.step-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(194,224,58,0.35);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.step.active .step-num { color: var(--gold); }
+.step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.3);
+  margin-bottom: 12px;
+  transition: color 0.4s;
+}
+.step.active .step-title { color: var(--ivory); }
+.step-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.22);
+  line-height: 1.7;
+  transition: color 0.4s;
+}
+.step.active .step-body { color: rgba(247,242,234,0.5); }
+
+/* SECTION 8 — FACTORY */
+#factory {
+  padding: 160px 0;
+  background: #0f1117;
+  overflow: hidden;
+}
+.factory-header {
+  text-align: center;
+  padding: 0 60px;
+  margin-bottom: 100px;
+}
+.factory-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s;
+}
+.factory-eyebrow.visible { opacity: 1; transform: translateY(0); }
+.factory-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 6vw, 100px);
+  font-weight: 300;
+  color: var(--ivory);
+  line-height: 0.95;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s 0.2s;
+}
+.factory-title.visible { opacity: 1; transform: translateY(0); }
+.factory-title em { font-style: italic; color: var(--gold); }
+
+.factory-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(194,224,58,0.1);
+  margin: 0 60px;
+}
+.pillar {
+  background: #0f1117;
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+.pillar.visible { opacity: 1; transform: translateY(0); }
+.pillar:nth-child(2) { transition-delay: 0.15s; }
+.pillar:nth-child(3) { transition-delay: 0.3s; }
+.pillar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.8s;
+  transform-origin: left;
+}
+.pillar.visible::before { transform: scaleX(1); }
+.pillar-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.pillar-icon-inner {
+  width: 100%; height: 100%;
+  border: 1px solid rgba(194,224,58,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pillar-icon-inner svg {
+  width: 24px; height: 24px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+}
+.pillar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--ivory);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.pillar-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.4);
+  line-height: 1.8;
+}
+
+.factory-spec {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 80px 60px;
+  border-top: 1px solid rgba(194,224,58,0.1);
+  margin-top: 60px;
+}
+.spec-item {}
+.spec-v {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+.spec-l {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(247,242,234,0.3);
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* FACTORY PHOTO GALLERY */
+.factory-gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 300px 240px;
+  gap: 2px;
+  margin: 0 0 0 0;
+}
+.fac-img {
+  overflow: hidden;
+  position: relative;
+}
+.fac-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+.fac-img:hover img { transform: scale(1.06); }
+.fac-img-1 { grid-row: 1 / 3; }
+.fac-img-2 { }
+.fac-img-3 { }
+.fac-img-4 { }
+.fac-img-5 { }
+
+/* BRAND LOGOS STRIP */
+#brands {
+  background: var(--ivory);
+  padding: 60px 60px;
+  border-top: 1px solid var(--border-solid);
+  border-bottom: 1px solid var(--border-solid);
+}
+.brands-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--light-text);
+  text-align: center;
+  margin-bottom: 48px;
+}
+.brands-grid {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.brands-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-logo {
+  flex-shrink: 0;
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.55;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.brand-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.08);
+}
+.brand-logo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.55;
+  filter: grayscale(100%);
+  transition: opacity 0.3s, filter 0.3s;
+}
+.brand-logo:hover { opacity: 1; filter: grayscale(0%); }
+
+.brands-marquee {
+  overflow: hidden;
+  position: relative;
+}
+
+.brands-track {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+  animation: scrollBrands 30s linear infinite;
+}
+
+@keyframes scrollBrands {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 900px) {
+  .factory-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 180px 180px; }
+  .fac-img-1 { grid-row: auto; }
+  #brands { padding: 48px 24px; }
+  .brands-grid { gap: 24px 32px; }
+  .brand-logo { height: 34px; }
+}
+
+/* SECTION 9 — TESTIMONIALS */
+#testimonials {
+  padding: 160px 60px;
+  background: var(--beige);
+}
+.testimonials-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+  align-items: end;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.testimonial-card {
+  background: var(--card);
+  padding: 48px 40px;
+  border: 1px solid var(--border-solid);
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+.testimonial-card.visible { opacity: 1; transform: translateY(0); }
+.testimonial-card:nth-child(2) { transition-delay: 0.15s; }
+.testimonial-card:nth-child(3) { transition-delay: 0.3s; }
+.tc-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60px;
+  line-height: 0.8;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: block;
+}
+.tc-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+.tc-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 24px;
+}
+.tc-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--charcoal);
+  letter-spacing: 1px;
+}
+.tc-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--light-text);
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+.tc-stars {
+  position: absolute;
+  top: 40px; right: 36px;
+  display: flex;
+  gap: 3px;
+}
+.star { color: var(--gold); font-size: 12px; }
+
+/* SECTION 10 — LEADERSHIP */
+#leadership {
+  padding: 160px 60px;
+  background: var(--charcoal);
+}
+.leadership-header { margin-bottom: 80px; }
+.leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.leader-card {
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+}
+.leader-portrait {
+  width: 100%;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+.leader-card:hover .leader-portrait { transform: scale(1.04); }
+.lp-1 { background: linear-gradient(160deg, #1e2230 0%, #141720 100%); }
+.lp-2 { background: linear-gradient(160deg, #182022 0%, #101618 100%); }
+.lp-3 { background: linear-gradient(160deg, #1a1a2a 0%, #101020 100%); }
+.lp-4 { background: linear-gradient(160deg, #1e1c18 0%, #141210 100%); }
+.leader-initials {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(194,224,58,0.3);
+}
+.leader-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 40px 32px;
+  background: linear-gradient(0deg, rgba(10,8,5,0.95) 0%, transparent 100%);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s;
+}
+.leader-card:hover .leader-info { opacity: 1; transform: translateY(0); }
+.leader-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ivory);
+  margin-bottom: 6px;
+}
+.leader-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.leader-base {
+  padding: 28px 0;
+  border-top: 1px solid rgba(194,224,58,0.12);
+}
+.lb-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.7);
+}
+.lb-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+
+/* SECTION 11 — EXPERIENCE CENTER */
+#experience {
+  padding: 160px 60px;
+  background: var(--ivory);
+}
+.experience-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.experience-gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 300px 200px;
+  gap: 4px;
+}
+.gal-cell {
+  background: linear-gradient(135deg, #1a1d24, #141720);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: rgba(194,224,58,0.25);
+  letter-spacing: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.gal-cell-1 { grid-row: 1 / 3; background: linear-gradient(135deg, #1e2230, #252934); }
+.gal-cell-2 { background: linear-gradient(135deg, #1a1d24, #22252e); }
+.gal-cell-3 { background: linear-gradient(135deg, #1c2022, #242830); }
+.gal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(194,224,58,0.0);
+  transition: background 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gal-cell:hover .gal-overlay { background: rgba(194,224,58,0.08); }
+
+.experience-content .section-label { margin-bottom: 32px; }
+.experience-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4vw, 64px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin-bottom: 40px;
+}
+.experience-headline em { font-style: italic; color: var(--gold); }
+.experience-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--light-text);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.experience-stat {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+.experience-stat:last-of-type { margin-bottom: 48px; }
+.es-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--gold);
+  min-width: 100px;
+}
+.es-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--light-text);
+  line-height: 1.5;
+}
+
+/* SECTION 12 — CTA/BOOKING */
+#booking {
+  padding: 160px 60px;
+  background: var(--charcoal);
+  position: relative;
+  overflow: hidden;
+}
+.booking-bg-element {
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(194,224,58,0.07);
+  pointer-events: none;
+}
+.booking-bg-element-2 {
+  position: absolute;
+  bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(194,224,58,0.04);
+  pointer-events: none;
+}
+.booking-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+.booking-left {}
+.booking-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.booking-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 5vw, 80px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--ivory);
+  margin-bottom: 32px;
+}
+.booking-title em { font-style: italic; color: var(--gold); }
+.booking-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.4);
+  line-height: 1.8;
+  margin-bottom: 52px;
+}
+.booking-assurances {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.assurance-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(247,242,234,0.5);
+}
+.assurance-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.form-field {
+  background: rgba(247,242,234,0.04);
+  border: none;
+  border-bottom: 1px solid rgba(194,224,58,0.2);
+  padding: 24px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ivory);
+  outline: none;
+  transition: all 0.3s;
+  width: 100%;
+}
+.form-field::placeholder { color: rgba(247,242,234,0.3); }
+.form-field:focus {
+  background: rgba(247,242,234,0.06);
+  border-bottom-color: var(--gold);
+}
+.form-field option { background: #1a1d24; color: var(--ivory); }
+select.form-field { cursor: pointer; }
+textarea.form-field {
+  min-height: 120px;
+  resize: none;
+}
+.form-submit {
+  margin-top: 4px;
+  background: var(--gold);
+  border: none;
+  padding: 22px 40px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+  width: 100%;
+}
+.form-submit:hover {
+  background: var(--gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 60px rgba(194,224,58,0.2);
+}
+
+/* FOOTER */
+footer {
+  background: #0a0c11;
+  padding: 80px 60px 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.footer-brand {}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: var(--ivory);
+  margin-bottom: 20px;
+  display: block;
+}
+.footer-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.3);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+.social-link {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(194,224,58,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  color: rgba(247,242,234,0.4);
+  font-size: 11px;
+}
+.social-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.footer-col-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.35);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--ivory); }
+.footer-address {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(247,242,234,0.35);
+  line-height: 1.8;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(194,224,58,0.1);
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(247,242,234,0.2);
+}
+.footer-gold-bar {
+  width: 40px; height: 1px;
+  background: var(--gold);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.23,1,0.32,1), transform 0.9s cubic-bezier(0.23,1,0.32,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--charcoal); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* Loading overlay */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #0f1117;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  transition: opacity 0.8s, visibility 0.8s;
+}
+#loader.hidden { opacity: 0; visibility: hidden; }
+.loader-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 8px;
+  color: var(--ivory);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+.loader-bar-track {
+  width: 200px; height: 1px;
+  background: rgba(194,224,58,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%;
+  background: var(--gold);
+  width: 0%;
+  animation: load 1.8s ease forwards;
+}
+@keyframes load {
+  0% { width: 0%; }
+  60% { width: 80%; }
+  100% { width: 100%; }
+}
+
+/* Mobile menu toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.toggle-bar {
+  width: 28px; height: 1px;
+  background: var(--ivory);
+  transition: all 0.3s;
+}
+nav.scrolled .toggle-bar { background: var(--charcoal); }
+
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+
+  .hero-title { font-size: clamp(40px, 10vw, 64px); }
+  .hero-sub { font-size: 13px; }
+  .hero-actions { flex-direction: column; gap: 12px; }
+
+  #manifesto { padding: 100px 0; }
+  .manifesto-inner { padding: 0 24px; }
+  .manifesto-line { font-size: clamp(22px, 6vw, 38px); }
+
+  .section-header { padding: 0 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card:first-child { grid-column: 1; grid-row: auto; }
+  .project-overlay { opacity: 1; transform: none; }
+
+  #trust { padding: 80px 24px; }
+  .trust-top { grid-template-columns: 1fr; gap: 40px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  #philosophy { padding: 100px 24px; }
+  .philosophy-grid { grid-template-columns: 1fr; gap: 60px; }
+  .philosophy-visual { height: 400px; }
+
+  .services-header { padding: 0 24px; }
+  .services-scroll-track { padding: 0 24px; }
+  .service-tile { min-width: 300px; height: 420px; }
+
+  #journey { padding: 100px 24px; }
+  .journey-grid { grid-template-columns: 1fr; gap: 60px; }
+
+  #factory { padding: 100px 0; }
+  .factory-pillars { grid-template-columns: 1fr; margin: 0 24px; }
+  .factory-spec { grid-template-columns: repeat(2, 1fr); padding: 60px 24px; }
+
+  #testimonials { padding: 100px 24px; }
+  .testimonials-header { grid-template-columns: 1fr; gap: 40px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  #leadership { padding: 100px 24px; }
+  .leaders-grid { grid-template-columns: repeat(2, 1fr); }
+
+  #experience { padding: 100px 24px; }
+  .experience-layout { grid-template-columns: 1fr; gap: 60px; }
+
+  #booking { padding: 100px 24px; }
+  .booking-inner { grid-template-columns: 1fr; gap: 60px; }
+
+  footer { padding: 60px 24px 32px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">MTC SPACES</div>
+  <div class="loader-bar-track"><div class="loader-bar"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#" class="nav-logo">MTC SPACES</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#factory">Process</a></li>
+    <li><a href="#experience">Experience Center</a></li>
+    <li><a href="#leadership">About</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Book Consultation</a>
+  <div class="nav-toggle" id="navToggle">
+    <div class="toggle-bar"></div>
+    <div class="toggle-bar"></div>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <img src="https://drive.google.com/thumbnail?id=1r49h_t9mSK06Yt1YTXb7feG1vLHstDDY&sz=w1920" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.22;z-index:0;pointer-events:none;">
+  <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-float float-1"></div>
+  <div class="hero-float float-2"></div>
+  <div class="hero-float float-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hyderabad, India &nbsp;·&nbsp; Est. 2012 &nbsp;·&nbsp; Luxury Interior Design</div>
+    <h1 class="hero-title">
+      <span class="line"><span>Where</span></span>
+      <span class="line"><span><em>Innovation</em></span></span>
+      <span class="line"><span>Meets Precision</span></span>
+    </h1>
+    <p class="hero-sub">Creating bespoke interiors that seamlessly blend sophistication with functionality — every space, a living masterpiece.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">Book Consultation</a>
+      <a href="#projects" class="btn-secondary">Explore Projects</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- SECTION 2: MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-inner">
+    <div class="manifesto-line">
+      <span class="manifesto-num">01</span>
+      <span>We don't design rooms.<br><em>We design experiences.</em></span>
+    </div>
+    <div class="manifesto-line">
+      <span class="manifesto-num">02</span>
+      <span>We don't build interiors.<br><em>We shape lifestyles.</em></span>
+    </div>
+    <div class="manifesto-line">
+      <span class="manifesto-num">03</span>
+      <span>We don't create houses.<br><em>We create homes worth remembering.</em></span>
+    </div>
+    <div class="manifesto-line">
+      <span class="manifesto-num">04</span>
+      <span>Every material chosen.<br><em>Every detail considered.</em></span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Featured Projects</div>
+      <h2 class="section-title">Spaces that<br>inspire <em>living</em></h2>
+    </div>
+    <a href="#" class="view-all">View All Projects &rarr;</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img class="project-img" src="https://drive.google.com/thumbnail?id=16gp6fEFtVB_65Rt1rdJ7EvRTdRBRP4kU&sz=w1200" alt="Aranya Residence - Master Bedroom">
+      <div class="project-overlay">
+        <span class="project-tag">Residential · Master Suite</span>
+        <div class="project-name">The Aranya Residence</div>
+        <div class="project-loc">Jubilee Hills, Hyderabad</div>
+      </div>
+      <div class="project-label">
+        <div class="pl-tag">Residential</div>
+        <div class="pl-name">Aranya Residence</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://drive.google.com/thumbnail?id=1u_LQtg_rY6799qGMDT6dVgDPc9A2KvwL&sz=w800" alt="Nexus Corporate HQ - Living Space" style="min-height:320px">
+      <div class="project-overlay">
+        <span class="project-tag">Commercial · Office</span>
+        <div class="project-name">Nexus Corporate HQ</div>
+        <div class="project-loc">HITEC City, Hyderabad</div>
+      </div>
+      <div class="project-label">
+        <div class="pl-tag">Commercial</div>
+        <div class="pl-name">Nexus Corporate HQ</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://drive.google.com/thumbnail?id=1bjikeozQwniAPjpR3GUms9C2-2bmrV1_&sz=w800" alt="Verano Penthouse - Kitchen" style="min-height:320px">
+      <div class="project-overlay">
+        <span class="project-tag">Residential · Penthouse</span>
+        <div class="project-name">The Verano Penthouse</div>
+        <div class="project-loc">Banjara Hills, Hyderabad</div>
+      </div>
+      <div class="project-label">
+        <div class="pl-tag">Residential</div>
+        <div class="pl-name">Verano Penthouse</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://drive.google.com/thumbnail?id=1rV4eY7PKlHzB2ZCDjVy4KFUBVPqbaWLJ&sz=w800" alt="Serene Dining - Dining Room" style="min-height:320px">
+      <div class="project-overlay">
+        <span class="project-tag">Residential · Dining</span>
+        <div class="project-name">The Serene Dining</div>
+        <div class="project-loc">Gachibowli, Hyderabad</div>
+      </div>
+      <div class="project-label">
+        <div class="pl-tag">Residential</div>
+        <div class="pl-name">Serene Dining</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: TRUST STATS -->
+<section id="trust">
+  <div class="trust-top reveal">
+    <div class="trust-intro">
+      Why Hyderabad's most<br>discerning homeowners<br>choose <em>MTC Spaces</em>
+    </div>
+    <div class="trust-body">
+      With over a decade of precision craftsmanship, 15,200 sq ft of experience, and an unwavering commitment to quality — we deliver interiors that stand the test of time. Every project is a promise. Every space, a legacy.
+    </div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-num"><span class="count" data-target="12">0</span><span class="stat-unit">+</span></div>
+      <div class="stat-label">Years Warranty</div>
+      <div class="stat-desc">Industry-leading 12-year workmanship guarantee on every project</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num"><span class="count" data-target="15200">0</span></div>
+      <div class="stat-label">Sq Ft Experience Center</div>
+      <div class="stat-desc">Hyderabad's most immersive interior design showroom</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num"><span class="count" data-target="100">0</span><span class="stat-unit">%</span></div>
+      <div class="stat-label">Customization</div>
+      <div class="stat-desc">Every element crafted to your unique vision and lifestyle</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num"><span class="count" data-target="500">0</span><span class="stat-unit">+</span></div>
+      <div class="stat-label">Projects Delivered</div>
+      <div class="stat-desc">Luxury residences and commercial spaces across Hyderabad</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: PHILOSOPHY -->
+<section id="philosophy">
+  <div class="philosophy-grid">
+    <div class="philosophy-text reveal">
+      <div class="section-label">Design Philosophy</div>
+      <h2 class="philosophy-headline">We design<br>around <em>people.</em><br>Not spaces.</h2>
+      <p class="philosophy-body">
+        Our design philosophy is rooted in human experience. We listen deeply to how you live, how you move through space, what brings you comfort, what stirs your soul. Only then do we begin to design.
+      </p>
+      <p class="philosophy-body">
+        The result is never merely beautiful — it is deeply personal. A space that feels like an extension of who you are.
+      </p>
+      <a href="#booking" class="btn-primary">Start Your Journey</a>
+    </div>
+    <div class="philosophy-visual reveal">
+      <div class="phil-img-main" style="background:none;overflow:hidden">
+        <img src="https://drive.google.com/thumbnail?id=1GlGyYlvO7OmCeQ-36_JHBwfS8c0ZEzAt&sz=w1200" alt="MTC Spaces Interior Design" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="phil-img-accent">
+        <div class="phil-quote">"Where precision becomes poetry"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="services-scroll-track" id="servicesTrack">
+
+  <!-- BALCONY -->
+  <a href="balcony.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=1W91FCq2HmJ2Wx8eFC04zdqCBOxmLcz_s&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">01</span>
+      <h3 class="service-name">Balcony</h3>
+      <p class="service-desc">Elegant outdoor spaces crafted for relaxation and entertaining.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- BATHROOM -->
+  <a href="bathroom.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=18WSbHp8olHd1u7RQAblcCvE02xpCRuNm&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">02</span>
+      <h3 class="service-name">Bathroom</h3>
+      <p class="service-desc">Luxury bathrooms designed for comfort, elegance and functionality.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- BEDROOM -->
+  <a href="bedroom.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=1GlGyYlvO7OmCeQ-36_JHBwfS8c0ZEzAt&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">03</span>
+      <h3 class="service-name">Bedroom</h3>
+      <p class="service-desc">Personal sanctuaries blending luxury, warmth and sophistication.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- DINING -->
+  <a href="dining.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=1IjJHvE9KcP_fX9ubfI7YWgKgl9RFfuiS&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">04</span>
+      <h3 class="service-name">Dining</h3>
+      <p class="service-desc">Spaces designed to bring families together around memorable meals.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- KIDS -->
+  <a href="kids.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=10E2ZIPBsjGkBWTFSPar6YilETELc8ACJ&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">05</span>
+      <h3 class="service-name">Kids Room</h3>
+      <p class="service-desc">Creative and playful environments built for imagination and growth.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- KITCHEN -->
+  <a href="kitchen.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=1U2Qao9Qu4nT7aXtnQmdBbG7bEkmqZuPQ&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">06</span>
+      <h3 class="service-name">Kitchen</h3>
+      <p class="service-desc">Modern kitchens engineered for efficiency and timeless elegance.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- LIVING -->
+  <a href="living.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=1r49h_t9mSK06Yt1YTXb7feG1vLHstDDY&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">07</span>
+      <h3 class="service-name">Living Room</h3>
+      <p class="service-desc">Sophisticated living spaces designed for gathering and comfort.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- POOJA -->
+  <a href="pooja.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=1_w1WMx1HgFhW9UaFlSeTcnyw2udz3dJ4&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">08</span>
+      <h3 class="service-name">Pooja Room</h3>
+      <p class="service-desc">Sacred spaces thoughtfully designed for peace and spirituality.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+  <!-- WARDROBE -->
+  <a href="wardrobe.html" class="service-tile">
+    <img src="https://drive.google.com/thumbnail?id=1Us-MOLPvc_H685qQkI9qOZJyjoGXBqdc&sz=w1200" class="service-bg">
+    <div class="service-overlay"></div>
+    <div class="service-content">
+      <span class="service-num">09</span>
+      <h3 class="service-name">Wardrobe</h3>
+      <p class="service-desc">Custom storage solutions that combine beauty with organization.</p>
+    </div>
+    <div class="service-arrow">→</div>
+  </a>
+
+</div>
+<!-- SECTION 7: JOURNEY -->
+<section id="journey">
+  <div class="journey-grid">
+    <div class="journey-left reveal">
+      <div class="section-label">Client Journey</div>
+      <h2 class="journey-title">From dream<br>to <em>reality</em></h2>
+    </div>
+    <div class="journey-steps">
+      <div class="journey-line"></div>
+      <div class="journey-progress" id="journeyProgress"></div>
+      <div class="step active" data-step="1">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 01</div>
+        <div class="step-title">Say Hello</div>
+        <div class="step-body">Connect with our design consultants. Share your vision, budget, and timeline. We listen without judgement — every dream is valid.</div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 02</div>
+        <div class="step-title">Book With MTC Spaces</div>
+        <div class="step-body">Visit our 15,200 sq ft Experience Center. Explore materials, textures, and finished samples. Meet your dedicated design partner.</div>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 03</div>
+        <div class="step-title">Place The Order</div>
+        <div class="step-body">Finalise your 3D design, approve materials, and place your order with flexible EMI options available.</div>
+      </div>
+      <div class="step" data-step="4">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 04</div>
+        <div class="step-title">Precision Manufacturing</div>
+        <div class="step-body">Our in-house factory uses advanced machinery to manufacture every element with Swiss-level precision and quality control.</div>
+      </div>
+      <div class="step" data-step="5">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 05</div>
+        <div class="step-title">Move In</div>
+        <div class="step-body">White-glove installation, final walkaround, and handover. Your dream space — delivered on time, every time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: FACTORY -->
+<section id="factory">
+  <div class="factory-header">
+    <div class="factory-eyebrow" id="factoryEyebrow">In-House Manufacturing</div>
+    <h2 class="factory-title" id="factoryTitle">Factory of<br><em>Precision</em></h2>
+  </div>
+  <div class="factory-pillars">
+    <div class="pillar" id="pillar1">
+      <div class="pillar-icon">
+        <div class="pillar-icon-inner">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+        </div>
+      </div>
+      <div class="pillar-title">Advanced Technology</div>
+      <div class="pillar-body">CNC precision cutting, laser engraving, and computer-controlled joinery ensure every panel, frame, and finish meets aerospace-grade tolerances.</div>
+    </div>
+    <div class="pillar" id="pillar2">
+      <div class="pillar-icon">
+        <div class="pillar-icon-inner">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 22 20 2 20"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="18"/></svg>
+        </div>
+      </div>
+      <div class="pillar-title">Master Craftsmen</div>
+      <div class="pillar-body">Our artisans bring decades of experience to every dovetail joint, hand-finished edge, and bespoke detail — where human skill meets machine precision.</div>
+    </div>
+    <div class="pillar" id="pillar3">
+      <div class="pillar-icon">
+        <div class="pillar-icon-inner">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+      </div>
+      <div class="pillar-title">Quality Assurance</div>
+      <div class="pillar-body">Every component passes through 47 quality checkpoints before installation. Our 12-year warranty is not a promise — it is a certainty built into every process.</div>
+    </div>
+  </div>
+  <div class="factory-spec">
+    <div class="spec-item">
+      <div class="spec-v">47</div>
+      <div class="spec-l">Quality Checkpoints</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-v">12</div>
+      <div class="spec-l">Year Warranty</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-v">100%</div>
+      <div class="spec-l">In-House Production</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-v">0</div>
+      <div class="spec-l">Outsourced Components</div>
+    </div>
+  </div>
+
+  <div class="factory-gallery">
+    <div class="fac-img fac-img-1">
+      <img src="https://drive.google.com/thumbnail?id=1Hox5XEJEuYzf7X0VkLpeJibhTKz5YMxr&sz=w1200" alt="MTC Spaces Factory">
+    </div>
+    <div class="fac-img fac-img-2">
+      <img src="https://drive.google.com/thumbnail?id=1_kmCVALFh-Gc26JOsx94T8XzKfpt57Ne&sz=w800" alt="MTC Spaces Factory">
+    </div>
+    <div class="fac-img fac-img-3">
+      <img src="https://drive.google.com/thumbnail?id=1Chox4cy0DCLGoIB_trOE4ZR4vzzRFwoD&sz=w800" alt="MTC Spaces Factory">
+    </div>
+    <div class="fac-img fac-img-4">
+      <img src="https://drive.google.com/thumbnail?id=1e9EYJIx6FpzFcGpn2mOQS19CQ13HKQLR&sz=w800" alt="MTC Spaces Factory">
+    </div>
+    <div class="fac-img fac-img-5">
+      <img src="https://drive.google.com/thumbnail?id=1UpsFEHnhcZVs4OVziNNdvMby1z7k7YFB&sz=w800" alt="MTC Spaces Factory">
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS STRIP -->
+<section id="brands">
+  <div class="brands-label">Trusted Partners &amp; Brands We Work With</div>
+
+  <div class="brands-marquee">
+    <div class="brands-track">
+
+      <!-- Original Logos -->
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1CzHF33zrPKGlm39PACVy4bIeXqkJSYhB&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1VROySkyHTOe5lPSTwzzK-s-deYGCzgsp&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=13Lf32e9c0FZKcyJHsAiSYAcike0ipsYw&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1Y0109rAjyAxs3cBw9UqRmgNrwZHxfwZF&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1TZ_qj_lbdF29_zmHisY7z8vScBdoePf0&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1wYcrzFhRy0zchklPBlNIZ6T3eGSs2z0L&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=10wYj4KZzZLpvz7DCRFNHvhwJrajenM4o&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1Z3RVjQ3Lbx1OlY7o8b8SIWpSjMq0MzEq&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1MmVcjrmApJI59hEg0k-dO10tuTuIVllL&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1j7ZJzbm1Ey2lTfJDzChcAdxbsWz4b8NO&sz=w300" alt="Brand Partner">
+
+      <!-- Duplicate Logos For Infinite Scroll -->
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1CzHF33zrPKGlm39PACVy4bIeXqkJSYhB&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1VROySkyHTOe5lPSTwzzK-s-deYGCzgsp&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=13Lf32e9c0FZKcyJHsAiSYAcike0ipsYw&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1Y0109rAjyAxs3cBw9UqRmgNrwZHxfwZF&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1TZ_qj_lbdF29_zmHisY7z8vScBdoePf0&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1wYcrzFhRy0zchklPBlNIZ6T3eGSs2z0L&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=10wYj4KZzZLpvz7DCRFNHvhwJrajenM4o&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1Z3RVjQ3Lbx1OlY7o8b8SIWpSjMq0MzEq&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1MmVcjrmApJI59hEg0k-dO10tuTuIVllL&sz=w300" alt="Brand Partner">
+      <img class="brand-logo" src="https://drive.google.com/thumbnail?id=1j7ZJzbm1Ey2lTfJDzChcAdxbsWz4b8NO&sz=w300" alt="Brand Partner">
+
+    </div>
+  </div>
+</section>
+<!-- SECTION 9: TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header reveal">
+    <div>
+      <div class="section-label">Client Stories</div>
+      <h2 class="section-title">What our clients<br>say about <em>us</em></h2>
+    </div>
+    <p class="trust-body" style="color:var(--light-text);font-size:15px;line-height:1.8;padding-top:0">Every project is a relationship built on trust, communication, and an obsessive commitment to excellence.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="tc-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <span class="tc-quote">"</span>
+      <p class="tc-text">MTC Spaces transformed our 4BHK into something straight out of Architectural Digest. The attention to detail was extraordinary — they thought of things we hadn't even imagined.</p>
+      <div class="tc-divider"></div>
+      <div class="tc-name">Rajesh & Priya Mehta</div>
+      <div class="tc-role">Jubilee Hills, Hyderabad</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="tc-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <span class="tc-quote">"</span>
+      <p class="tc-text">The 12-year warranty gave us complete confidence. But honestly, after seeing the quality of their craftsmanship, we know we'll never need it. World-class execution.</p>
+      <div class="tc-divider"></div>
+      <div class="tc-name">Vikram Nair</div>
+      <div class="tc-role">Banjara Hills, Hyderabad</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="tc-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <span class="tc-quote">"</span>
+      <p class="tc-text">From our first visit to their Experience Center to the final installation — the entire journey was seamless. They are not interior designers. They are experience architects.</p>
+      <div class="tc-divider"></div>
+      <div class="tc-name">Ananya & Kiran Reddy</div>
+      <div class="tc-role">Gachibowli, Hyderabad</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: LEADERSHIP -->
+<section id="leadership">
+  <div class="leadership-header reveal">
+    <div class="section-label">The Visionaries</div>
+    <h2 class="section-title" style="color:var(--ivory)">The minds behind<br>the <em>masterpieces</em></h2>
+  </div>
+  <div class="leaders-grid">
+    <div class="leader-card">
+      <div class="leader-portrait lp-1" style="background:none;overflow:hidden">
+        <img src="https://drive.google.com/thumbnail?id=1kokkjmpz765xv_naR7ffFn34ECrbLblP&sz=w600" alt="Syed Abdul Wahab" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+      </div>
+      <div class="leader-info">
+        <div class="leader-name">Syed Abdul Wahab</div>
+        <div class="leader-role">Founder & Design Director</div>
+      </div>
+      <div class="leader-base">
+        <div class="lb-name">Syed Abdul Wahab</div>
+        <div class="lb-role">Founder & Design Director</div>
+      </div>
+    </div>
+    <div class="leader-card">
+      <div class="leader-portrait lp-2" style="background:none;overflow:hidden">
+        <img src="https://drive.google.com/thumbnail?id=1f8UscIJH9TdA3jOaYZWRT3TZhCoeDl72&sz=w600" alt="Balasubramanyam Muthu" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+      </div>
+      <div class="leader-info">
+        <div class="leader-name">Balasubramanyam Muthu</div>
+        <div class="leader-role">Head of Operations</div>
+      </div>
+      <div class="leader-base">
+        <div class="lb-name">Balasubramanyam Muthu</div>
+        <div class="lb-role">Head of Operations</div>
+      </div>
+    </div>
+    <div class="leader-card">
+      <div class="leader-portrait lp-3" style="background:none;overflow:hidden">
+        <img src="https://drive.google.com/thumbnail?id=17O1F2afBLRfW0-e46xP0DYV9lmOwajeH&sz=w600" alt="Lalit Chilukuri" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+      </div>
+      <div class="leader-info">
+        <div class="leader-name">Lalit Chilukuri</div>
+        <div class="leader-role">Principal Architect</div>
+      </div>
+      <div class="leader-base">
+        <div class="lb-name">Lalit Chilukuri</div>
+        <div class="lb-role">Principal Architect</div>
+      </div>
+    </div>
+    <div class="leader-card">
+      <div class="leader-portrait lp-4" style="background:none;overflow:hidden">
+        <img src="https://drive.google.com/thumbnail?id=15_4qLBi8VZijsBwxNmuGJglQvw9AXQ59&sz=w600" alt="Samson" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+      </div>
+      <div class="leader-info">
+        <div class="leader-name">Samson</div>
+        <div class="leader-role">Head of Manufacturing</div>
+      </div>
+      <div class="leader-base">
+        <div class="lb-name">Samson</div>
+        <div class="lb-role">Head of Manufacturing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: EXPERIENCE CENTER -->
+<section id="experience">
+  <div class="experience-layout">
+    <div class="experience-gallery reveal">
+      <div class="gal-cell gal-cell-1" style="background:none;overflow:hidden;padding:0">
+        <img src="https://drive.google.com/thumbnail?id=1jfyZQj0iC7datD0EYn2MUNwxOsHJFOlB&sz=w1200" alt="MTC Spaces Experience Center" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="gal-overlay"></div>
+      </div>
+      <div class="gal-cell gal-cell-2" style="background:none;overflow:hidden;padding:0">
+        <img src="https://drive.google.com/thumbnail?id=1FiYaS5hue2VyY-u2tpCsH9BgD-waEbUx&sz=w800" alt="MTC Spaces Kitchen" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="gal-overlay"></div>
+      </div>
+      <div class="gal-cell gal-cell-3" style="background:none;overflow:hidden;padding:0">
+        <img src="https://drive.google.com/thumbnail?id=1aTXF3KEp2vEAoz9taA4R7IT7MXA5PdoZ&sz=w800" alt="MTC Spaces Wardrobe" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="gal-overlay"></div>
+      </div>
+    </div>
+    <div class="experience-content reveal">
+      <div class="section-label">Experience Center</div>
+      <h2 class="experience-headline">Touch before<br>you decide.<br><em>Feel</em> before you commit.</h2>
+      <p class="experience-body">Our 15,200 sq ft Experience Center in Hyderabad is unlike anything in the industry. Walk through 30+ fully furnished room vignettes. Touch 200+ material finishes. Meet your designer in person.</p>
+      <div class="experience-stat">
+        <div class="es-num">15,200</div>
+        <div class="es-text">Square feet of inspiration<br>Hyderabad's largest design showroom</div>
+      </div>
+      <div class="experience-stat">
+        <div class="es-num">200+</div>
+        <div class="es-text">Material and finish samples<br>Curated from global suppliers</div>
+      </div>
+      <div class="experience-stat">
+        <div class="es-num">30+</div>
+        <div class="es-text">Fully furnished room vignettes<br>Every style, every budget</div>
+      </div>
+      <a href="#booking" class="btn-primary">Schedule Your Visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12: BOOKING -->
+<section id="booking">
+  <div class="booking-bg-element"></div>
+  <div class="booking-bg-element-2"></div>
+  <div class="booking-inner">
+    <div class="booking-left reveal">
+      <div class="booking-eyebrow">Begin Your Journey</div>
+      <h2 class="booking-title">Start your<br><em>design</em><br>journey</h2>
+      <p class="booking-desc">A private design consultation with one of our senior designers. No pressure. Just possibilities. Your vision, our precision.</p>
+      <div class="booking-assurances">
+        <div class="assurance-item"><div class="assurance-dot"></div>Free initial consultation</div>
+        <div class="assurance-item"><div class="assurance-dot"></div>3D design visualization included</div>
+        <div class="assurance-item"><div class="assurance-dot"></div>Flexible EMI options available</div>
+        <div class="assurance-item"><div class="assurance-dot"></div>12-year workmanship warranty</div>
+        <div class="assurance-item"><div class="assurance-dot"></div>100% customization guaranteed</div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.2s">
+      <div class="booking-form">
+        <div class="form-row">
+          <input type="text" class="form-field" placeholder="Your Name">
+          <input type="tel" class="form-field" placeholder="Phone Number">
+        </div>
+        <input type="email" class="form-field" placeholder="Email Address">
+        <div class="form-row">
+          <select class="form-field">
+            <option value="" disabled selected>Project Type</option>
+            <option>Residential Interiors</option>
+            <option>Commercial Interiors</option>
+            <option>Modular Kitchen</option>
+            <option>Wardrobe & Storage</option>
+            <option>Complete Turnkey</option>
+          </select>
+          <select class="form-field">
+            <option value="" disabled selected>Budget Range</option>
+            <option>₹10 – 25 Lakhs</option>
+            <option>₹25 – 50 Lakhs</option>
+            <option>₹50 Lakhs – 1 Crore</option>
+            <option>₹1 Crore+</option>
+          </select>
+        </div>
+        <textarea class="form-field" placeholder="Tell us about your vision..."></textarea>
+        <button class="form-submit">Start Your Design Journey &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">MTC SPACES</span>
+      <p class="footer-tagline">Where Innovation Meets Precision. Luxury interior design and turnkey home solutions for Hyderabad's most discerning homeowners.</p>
+      <div class="footer-social">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">ig</a>
+        <a href="#" class="social-link">fb</a>
+        <a href="#" class="social-link">yt</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#">Residential Interiors</a></li>
+        <li><a href="#">Commercial Interiors</a></li>
+        <li><a href="#">Modular Kitchens</a></li>
+        <li><a href="#">Wardrobes</a></li>
+        <li><a href="#">Bespoke Furniture</a></li>
+        <li><a href="#">Turnkey Solutions</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About MTC</a></li>
+        <li><a href="#">Our Process</a></li>
+        <li><a href="#">Experience Center</a></li>
+        <li><a href="#">Factory Tour</a></li>
+        <li><a href="#">Leadership</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <p class="footer-address">
+        MTC Spaces Experience Center<br>
+        Hyderabad, Telangana<br>
+        India – 500 001<br><br>
+        +91 &nbsp;|&nbsp; hello@mtcspaces.in<br><br>
+        Mon – Sat: 10AM – 7PM<br>
+        Sunday: 11AM – 5PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 MTC Spaces. All rights reserved. Crafted with precision.</div>
+    <div class="footer-gold-bar"></div>
+    <div class="footer-copy">Hyderabad's Luxury Interior Design Studio</div>
+  </div>
+</footer>
+
+<script>
+// LOADER
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2000);
+});
+
+// CURSOR
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('cursorFollower');
+let mx = 0, my = 0, fx = 0, fy = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+});
+
+function animateFollower() {
+  fx += (mx - fx - 20) * 0.12;
+  fy += (my - fy - 20) * 0.12;
+  follower.style.transform = `translate(${fx}px, ${fy}px)`;
+  requestAnimationFrame(animateFollower);
+}
+animateFollower();
+
+document.querySelectorAll('a, button, .service-tile, .project-card, .leader-card').forEach(el => {
+  el.addEventListener('mouseenter', () => follower.classList.add('cursor-expand'));
+  el.addEventListener('mouseleave', () => follower.classList.remove('cursor-expand'));
+});
+
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// MANIFESTO SCROLL
+const manifestoLines = document.querySelectorAll('.manifesto-line');
+const manifestoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.4 });
+manifestoLines.forEach(l => manifestoObserver.observe(l));
+
+// REVEAL ELEMENTS
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(r => revealObs.observe(r));
+
+// COUNTER ANIMATION
+function animateCounter(el, target) {
+  const duration = 2000;
+  const start = performance.now();
+  const isLarge = target > 999;
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    const val = Math.floor(ease * target);
+    el.textContent = isLarge ? val.toLocaleString() : val;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.count').forEach(c => {
+        animateCounter(c, parseInt(c.dataset.target));
+      });
+      counterObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+const statsGrid = document.querySelector('.stats-grid');
+if (statsGrid) counterObs.observe(statsGrid);
+
+// FACTORY OBSERVER
+const factoryEls = ['factoryEyebrow', 'factoryTitle', 'pillar1', 'pillar2', 'pillar3'];
+const factoryObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      factoryObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+factoryEls.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) factoryObs.observe(el);
+});
+
+// TESTIMONIALS
+const testimonialObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      testimonialObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.testimonial-card').forEach(c => testimonialObs.observe(c));
+
+// JOURNEY STEPS INTERACTION
+const steps = document.querySelectorAll('.step');
+const progress = document.getElementById('journeyProgress');
+let currentStep = 0;
+
+function activateStep(idx) {
+  steps.forEach((s, i) => {
+    s.classList.toggle('active', i === idx);
+  });
+  const pct = (idx / (steps.length - 1)) * 100;
+  if (progress) progress.style.height = pct + '%';
+}
+
+steps.forEach((step, i) => {
+  step.addEventListener('click', () => activateStep(i));
+});
+
+// Auto-cycle steps
+let stepInterval = setInterval(() => {
+  currentStep = (currentStep + 1) % steps.length;
+  activateStep(currentStep);
+}, 2500);
+
+const journeySection = document.getElementById('journey');
+if (journeySection) {
+  journeySection.addEventListener('mouseenter', () => clearInterval(stepInterval));
+}
+
+// HORIZONTAL SCROLL — SERVICES DRAG
+const track = document.getElementById('servicesTrack');
+if (track) {
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+  track.addEventListener('mouseleave', () => isDown = false);
+  track.addEventListener('mouseup', () => isDown = false);
+  track.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  });
+}
+
+// PARALLAX HERO
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const hero = document.getElementById('hero');
+  if (hero && scrollY < window.innerHeight) {
+    const grid = hero.querySelector('.hero-grid');
+    const content = hero.querySelector('.hero-content');
+    if (grid) grid.style.transform = `translateY(${scrollY * 0.3}px)`;
+    if (content) content.style.transform = `translateY(${scrollY * 0.2}px)`;
+    if (content) content.style.opacity = 1 - scrollY / (window.innerHeight * 0.8);
+  }
+});
+
+// SMOOTH ANCHOR SCROLLING
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// FORM SUBMIT
+document.querySelector('.form-submit')?.addEventListener('click', function() {
+  this.textContent = 'Sending...';
+  setTimeout(() => {
+    this.textContent = '✓ We\'ll be in touch shortly';
+    this.style.background = 'var(--gold-deep)'; this.style.color = 'var(--ink)';
+  }, 1500);
+});
+</script>
+</body>
+</html>
