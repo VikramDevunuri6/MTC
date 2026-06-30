@@ -1,0 +1,1736 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Balcony | MTC Spaces</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --ivory:#F7F2EA;
+  --charcoal:#1A1D24;
+  --gold:#C2E03A;
+  --light-text:#6B7280;
+  --border:#E5DED2;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-family:'DM Sans',sans-serif;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:70vh;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
+
+.hero-content{
+  position:absolute;
+  bottom:80px;
+  left:80px;
+  color:white;
+}
+
+.hero-content p{
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.hero-content h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:92px;
+  font-weight:300;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+  position:fixed;
+  top:24px;
+  left:24px;
+  z-index:999;
+  text-decoration:none;
+  background:white;
+  color:var(--charcoal);
+  padding:14px 24px;
+  border-radius:999px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  transition:.3s;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* INTRO */
+
+.room-intro{
+  max-width:900px;
+  margin:100px auto 60px;
+  text-align:center;
+  padding:0 24px;
+}
+
+.room-intro span{
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--light-text);
+}
+
+.room-intro h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;
+  margin-top:20px;
+  margin-bottom:20px;
+  font-weight:300;
+}
+
+.room-intro p{
+  color:var(--light-text);
+  line-height:1.8;
+}
+
+/* GALLERY */
+
+.gallery{
+  width:min(1400px,90%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  padding-bottom:120px;
+}
+
+.gallery-card{
+  overflow:hidden;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 20px 60px rgba(0,0,0,.06);
+  transition:.4s;
+}
+
+.gallery-card img{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.23,1,.32,1);
+}
+
+.gallery-card:hover{
+  transform:translateY(-8px);
+}
+
+.gallery-card:hover img{
+  transform:scale(1.08);
+}
+
+/* ANIMATION */
+
+.fade-up{
+  opacity:0;
+  transform:translateY(50px);
+  animation:fadeUp .8s ease forwards;
+}
+
+.gallery-card:nth-child(2){animation-delay:.1s;}
+.gallery-card:nth-child(3){animation-delay:.2s;}
+.gallery-card:nth-child(4){animation-delay:.3s;}
+.gallery-card:nth-child(5){animation-delay:.4s;}
+.gallery-card:nth-child(6){animation-delay:.5s;}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:1024px){
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-content h1{
+    font-size:64px;
+  }
+}
+
+@media(max-width:768px){
+
+  .gallery{
+    grid-template-columns:1fr;
+  }
+
+  .hero-content{
+    left:24px;
+    bottom:40px;
+  }
+
+  .hero-content h1{
+    font-size:48px;
+  }
+
+  .room-intro h2{
+    font-size:42px;
+  }
+}
+
+
+/* ---- ENHANCED RESPONSIVE (injected) ---- */
+
+/* Prevent horizontal scroll */
+html, body { overflow-x: hidden; width: 100%; }
+img { max-width: 100%; height: auto; }
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Touch target */
+.back-btn { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Focus */
+a:focus-visible, button:focus-visible { outline: 2px solid #C2E03A; outline-offset: 2px; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero { height: 55vh; min-height: 320px; }
+  .hero-content { bottom: 56px; left: 40px; }
+  .hero-content h1 { font-size: clamp(52px, 8vw, 80px); }
+  .back-btn { top: 20px; left: 20px; }
+  .room-intro { margin: 72px auto 48px; padding: 0 32px; }
+  .room-intro h2 { font-size: clamp(40px, 6vw, 56px); }
+  .gallery { width: min(1200px, 92%); gap: 20px; padding-bottom: 80px; grid-template-columns: repeat(2,1fr); }
+  .gallery-card img { height: 340px; }
+  .gallery-card:hover { transform: translateY(-4px); }
+}
+
+@media (max-width: 767px) {
+  .hero { height: 56vw; min-height: 260px; max-height: 420px; }
+  .hero-content { bottom: 28px; left: 16px; right: 16px; }
+  .hero-content h1 { font-size: clamp(34px, 10vw, 52px); }
+  .hero-content p { font-size: 10px; letter-spacing: 2px; }
+  .back-btn { top: 14px; left: 14px; padding: 10px 16px; font-size: 13px; }
+  .room-intro { margin: 56px auto 36px; padding: 0 20px; }
+  .room-intro h2 { font-size: clamp(28px, 8vw, 40px); margin-top: 12px; margin-bottom: 12px; }
+  .room-intro p { font-size: 14px; }
+  .gallery { width: 100%; padding: 0 16px 72px; gap: 16px; grid-template-columns: 1fr; }
+  .gallery-card img { height: 68vw; max-height: 320px; }
+  .gallery-card:hover { transform: none; }
+  .gallery-card:hover img { transform: none; }
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">
+← Back to Home
+</a>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="images/services/bedroom/MBR_01.webp">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+<p>MTC SPACES</p>
+<h1>Bedroom</h1>
+</div>
+
+</section>
+
+<!-- INTRO -->
+
+<section class="room-intro">
+
+<span>Luxury Bedroom Collection</span>
+
+<h2>Bedroom Designs</h2>
+
+<p>
+Discover sophisticated bedroom interiors crafted to create
+a serene, elegant and luxurious personal retreat. Every design
+balances comfort, aesthetics and functionality.
+</p>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="gallery">
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/1. MBR_01.webp" alt="Bedroom Design 1" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/1. MBR_Wardrobe.webp" alt="Bedroom Design 2" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/1. MBR_Wardrobe_01.webp" alt="Bedroom Design 3" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/1.1. MBR_Wardrobe_01.webp" alt="Bedroom Design 4" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/1.2. MBR_Wardrobe_01.webp" alt="Bedroom Design 5" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/10. MBR_03.webp" alt="Bedroom Design 6" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/10.webp" alt="Bedroom Design 7" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/11. MBR_04.webp" alt="Bedroom Design 8" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/11.webp" alt="Bedroom Design 9" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/12. MBR_05.webp" alt="Bedroom Design 10" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/12.webp" alt="Bedroom Design 11" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/13. MBR_BedView.webp" alt="Bedroom Design 12" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/13.webp" alt="Bedroom Design 13" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/14. MBR_Wardrobe.webp" alt="Bedroom Design 14" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/14.webp" alt="Bedroom Design 15" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/15 (1).webp" alt="Bedroom Design 16" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/15. MBR_Wardrobe and Study.webp" alt="Bedroom Design 17" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/15.webp" alt="Bedroom Design 18" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/16(1).webp" alt="Bedroom Design 19" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/16.webp" alt="Bedroom Design 20" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/17.webp" alt="Bedroom Design 21" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/18 (1).webp" alt="Bedroom Design 22" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/18.webp" alt="Bedroom Design 23" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/19.webp" alt="Bedroom Design 24" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/2. MBR_Balcony Door.webp" alt="Bedroom Design 25" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/2. MBR_Wardrobe_02.webp" alt="Bedroom Design 26" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/2.1. MBR_Wardrobe_02.webp" alt="Bedroom Design 27" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/2.2. MBR_Wardrobe_02.webp" alt="Bedroom Design 28" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/20.webp" alt="Bedroom Design 29" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/21.webp" alt="Bedroom Design 30" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/22.webp" alt="Bedroom Design 31" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/23.webp" alt="Bedroom Design 32" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/24.webp" alt="Bedroom Design 33" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/25.webp" alt="Bedroom Design 34" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/26.webp" alt="Bedroom Design 35" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/3. MBR_Bed VIew.webp" alt="Bedroom Design 36" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/3. MBR_Dresser.webp" alt="Bedroom Design 37" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/3.1. MBR_Dresser.webp" alt="Bedroom Design 38" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/3.webp" alt="Bedroom Design 39" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/4.webp" alt="Bedroom Design 40" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/5.webp" alt="Bedroom Design 41" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/6.webp" alt="Bedroom Design 42" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/7.webp" alt="Bedroom Design 43" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/8. MBR_01.webp" alt="Bedroom Design 44" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/8.webp" alt="Bedroom Design 45" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/9. MBR_02.webp" alt="Bedroom Design 46" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/9.webp" alt="Bedroom Design 47" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration1_Scene 1.webp" alt="Bedroom Design 48" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration1_Scene 2.webp" alt="Bedroom Design 49" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration1_Scene 3.webp" alt="Bedroom Design 50" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration2_Scene 1.webp" alt="Bedroom Design 51" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration2_Scene 2.webp" alt="Bedroom Design 52" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration2_Scene 3.webp" alt="Bedroom Design 53" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration2_Scene 4.webp" alt="Bedroom Design 54" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration3_Scene 1.webp" alt="Bedroom Design 55" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration3_Scene 2.webp" alt="Bedroom Design 56" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration3_Scene 3.webp" alt="Bedroom Design 57" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration3_Scene 4.webp" alt="Bedroom Design 58" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration4_Scene 1.webp" alt="Bedroom Design 59" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration4_Scene 2.webp" alt="Bedroom Design 60" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration4_Scene 3.webp" alt="Bedroom Design 61" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration4_Scene 4.webp" alt="Bedroom Design 62" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration5_Scene 1.webp" alt="Bedroom Design 63" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration5_Scene 2.webp" alt="Bedroom Design 64" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration5_Scene 3.webp" alt="Bedroom Design 65" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1 Iteration5_Scene 4.webp" alt="Bedroom Design 66" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1_Scene 1 2.webp" alt="Bedroom Design 67" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1_Scene 1.webp" alt="Bedroom Design 68" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1_Scene 2 2.webp" alt="Bedroom Design 69" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1_Scene 2.webp" alt="Bedroom Design 70" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1_Scene 3 2.webp" alt="Bedroom Design 71" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1_Scene 3.webp" alt="Bedroom Design 72" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 1_Scene 4.webp" alt="Bedroom Design 73" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration2_Scene 1.webp" alt="Bedroom Design 74" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration2_Scene 2.webp" alt="Bedroom Design 75" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration2_Scene 3.webp" alt="Bedroom Design 76" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration3_Scene 1.webp" alt="Bedroom Design 77" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration3_Scene 2.webp" alt="Bedroom Design 78" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration3_Scene 3.webp" alt="Bedroom Design 79" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration4_Scene 1.webp" alt="Bedroom Design 80" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration4_Scene 2.webp" alt="Bedroom Design 81" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration4_Scene 3.webp" alt="Bedroom Design 82" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration4_Scene 4.webp" alt="Bedroom Design 83" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration5_Scene 1.webp" alt="Bedroom Design 84" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration5_Scene 2.webp" alt="Bedroom Design 85" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration5_Scene 3.webp" alt="Bedroom Design 86" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2 Iteration5_Scene 4.webp" alt="Bedroom Design 87" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2_Scene 1.webp" alt="Bedroom Design 88" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2_Scene 2.webp" alt="Bedroom Design 89" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2_Scene 3.webp" alt="Bedroom Design 90" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2_Scene 4.webp" alt="Bedroom Design 91" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 2_Scene 5.webp" alt="Bedroom Design 92" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 3  Iteration1_Scene 1.webp" alt="Bedroom Design 93" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 3  Iteration1_Scene 2.webp" alt="Bedroom Design 94" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 3  Iteration1_Scene 3.webp" alt="Bedroom Design 95" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 4_Scene 1.webp" alt="Bedroom Design 96" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Badroom 4_Scene 2.webp" alt="Bedroom Design 97" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 1 Iteration1_Scene 1.webp" alt="Bedroom Design 98" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 1 Iteration1_Scene 2.webp" alt="Bedroom Design 99" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 1 Iteration1_Scene 3.webp" alt="Bedroom Design 100" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 1 Iteration1_Scene 4.webp" alt="Bedroom Design 101" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 1_Scene 1.webp" alt="Bedroom Design 102" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 1_Scene 2.webp" alt="Bedroom Design 103" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 2 Iteration1_Scene 1.webp" alt="Bedroom Design 104" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 2 Iteration1_Scene 2.webp" alt="Bedroom Design 105" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 2 Iteration1_Scene 3.webp" alt="Bedroom Design 106" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 2_Scene 1.webp" alt="Bedroom Design 107" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 2_Scene 2.webp" alt="Bedroom Design 108" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom 2_Scene 3.webp" alt="Bedroom Design 109" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bathroom.webp" alt="Bedroom Design 110" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration1_Scene 1.webp" alt="Bedroom Design 111" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration1_Scene 2.webp" alt="Bedroom Design 112" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration1_Scene 3.webp" alt="Bedroom Design 113" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration1_Scene 4.webp" alt="Bedroom Design 114" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration1_Scene 5.webp" alt="Bedroom Design 115" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration2_Scene 1.webp" alt="Bedroom Design 116" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration2_Scene 2.webp" alt="Bedroom Design 117" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration2_Scene 3.webp" alt="Bedroom Design 118" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration2_Scene 4.webp" alt="Bedroom Design 119" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration2_Scene 5.webp" alt="Bedroom Design 120" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration3_Scene 1.webp" alt="Bedroom Design 121" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration3_Scene 2.webp" alt="Bedroom Design 122" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration3_Scene 3.webp" alt="Bedroom Design 123" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration3_Scene 4.webp" alt="Bedroom Design 124" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 Iteration3_Scene 5.webp" alt="Bedroom Design 125" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op1_Scene 1.webp" alt="Bedroom Design 126" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op1_Scene 2.webp" alt="Bedroom Design 127" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op1_Scene 3.webp" alt="Bedroom Design 128" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op1_Scene 4.webp" alt="Bedroom Design 129" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op2_Scene 1.webp" alt="Bedroom Design 130" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op2_Scene 2.webp" alt="Bedroom Design 131" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op2_Scene 3.webp" alt="Bedroom Design 132" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1 op2_Scene 4.webp" alt="Bedroom Design 133" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1_Scene 1.webp" alt="Bedroom Design 134" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1_Scene 2.webp" alt="Bedroom Design 135" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1_Scene 3.webp" alt="Bedroom Design 136" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1_Scene 4.webp" alt="Bedroom Design 137" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 1_Scene 5.webp" alt="Bedroom Design 138" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration1_Scene 1.webp" alt="Bedroom Design 139" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration1_Scene 2.webp" alt="Bedroom Design 140" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration1_Scene 3.webp" alt="Bedroom Design 141" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration1_Scene 4.webp" alt="Bedroom Design 142" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration1_Scene 5.webp" alt="Bedroom Design 143" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration2_Scene 1.webp" alt="Bedroom Design 144" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration2_Scene 2.webp" alt="Bedroom Design 145" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration2_Scene 3.webp" alt="Bedroom Design 146" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration2_Scene 4.webp" alt="Bedroom Design 147" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration2_Scene 5.webp" alt="Bedroom Design 148" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration3_Scene 1.webp" alt="Bedroom Design 149" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration3_Scene 6.webp" alt="Bedroom Design 150" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2  Iteration3_Scene 7.webp" alt="Bedroom Design 151" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration1_Scene 1.webp" alt="Bedroom Design 152" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration1_Scene 2.webp" alt="Bedroom Design 153" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration1_Scene 3.webp" alt="Bedroom Design 154" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration1_Scene 4.webp" alt="Bedroom Design 155" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration1_Scene 6.webp" alt="Bedroom Design 156" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration2_Scene 1.webp" alt="Bedroom Design 157" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration2_Scene 2.webp" alt="Bedroom Design 158" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration2_Scene 3.webp" alt="Bedroom Design 159" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration2_Scene 4.webp" alt="Bedroom Design 160" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration2_Scene 5.webp" alt="Bedroom Design 161" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration2_Scene 6.webp" alt="Bedroom Design 162" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration3_Scene 1.webp" alt="Bedroom Design 163" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration3_Scene 2.webp" alt="Bedroom Design 164" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration3_Scene 3.webp" alt="Bedroom Design 165" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration3_Scene 4.webp" alt="Bedroom Design 166" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration3_Scene 5.webp" alt="Bedroom Design 167" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration3_Scene 6.webp" alt="Bedroom Design 168" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration4_Scene 1.webp" alt="Bedroom Design 169" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration4_Scene 2.webp" alt="Bedroom Design 170" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration4_Scene 3.webp" alt="Bedroom Design 171" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration4_Scene 4.webp" alt="Bedroom Design 172" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration4_Scene 5.webp" alt="Bedroom Design 173" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2 Iteration4_Scene 6.webp" alt="Bedroom Design 174" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 1.webp" alt="Bedroom Design 175" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 2.webp" alt="Bedroom Design 176" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 3.webp" alt="Bedroom Design 177" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 4.webp" alt="Bedroom Design 178" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 5.webp" alt="Bedroom Design 179" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 6(1).webp" alt="Bedroom Design 180" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 6.webp" alt="Bedroom Design 181" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 2_Scene 7.webp" alt="Bedroom Design 182" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration1_Scene 1.webp" alt="Bedroom Design 183" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration1_Scene 2.webp" alt="Bedroom Design 184" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration1_Scene 3.webp" alt="Bedroom Design 185" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration1_Scene 4.webp" alt="Bedroom Design 186" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration2_Scene 1.webp" alt="Bedroom Design 187" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration2_Scene 2.webp" alt="Bedroom Design 188" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration2_Scene 3.webp" alt="Bedroom Design 189" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration3_Scene 1.webp" alt="Bedroom Design 190" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration3_Scene 4.webp" alt="Bedroom Design 191" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration4_Scene 1.webp" alt="Bedroom Design 192" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3 Iteration4_Scene 4.webp" alt="Bedroom Design 193" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3_Scene 1 2.webp" alt="Bedroom Design 194" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3_Scene 1.webp" alt="Bedroom Design 195" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3_Scene 2 2.webp" alt="Bedroom Design 196" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3_Scene 2.webp" alt="Bedroom Design 197" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3_Scene 3 2.webp" alt="Bedroom Design 198" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3_Scene 3.webp" alt="Bedroom Design 199" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 3_Scene 4.webp" alt="Bedroom Design 200" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4 Iteration1_Scene 1.webp" alt="Bedroom Design 201" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4 Iteration1_Scene 2.webp" alt="Bedroom Design 202" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4 Iteration2_Scene 1.webp" alt="Bedroom Design 203" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4 Iteration2_Scene 2.webp" alt="Bedroom Design 204" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4_Scene 1.webp" alt="Bedroom Design 205" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4_Scene 2.webp" alt="Bedroom Design 206" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4_Scene 3.webp" alt="Bedroom Design 207" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom 4_Scene 4.webp" alt="Bedroom Design 208" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom Master 1.webp" alt="Bedroom Design 209" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom Master 2.webp" alt="Bedroom Design 210" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom2_BedView_3.webp" alt="Bedroom Design 211" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Bedroom2_BedView_4.webp" alt="Bedroom Design 212" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2025-06-28-19-18-24_m2.webp" alt="Bedroom Design 213" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2025-07-15-13-32-16.webp" alt="Bedroom Design 214" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-02-18-59-34.webp" alt="Bedroom Design 215" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-02-19-01-25.webp" alt="Bedroom Design 216" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-02-19-04-37.webp" alt="Bedroom Design 217" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-02-19-06-36.webp" alt="Bedroom Design 218" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-02-19-38-37.webp" alt="Bedroom Design 219" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-02-19-39-24.webp" alt="Bedroom Design 220" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-03-12-14-07.webp" alt="Bedroom Design 221" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-03-12-15-24.webp" alt="Bedroom Design 222" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-03-12-17-46.webp" alt="Bedroom Design 223" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-03-12-21-08.webp" alt="Bedroom Design 224" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-04-13-37-08.webp" alt="Bedroom Design 225" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-04-13-39-10.webp" alt="Bedroom Design 226" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-04-13-40-52.webp" alt="Bedroom Design 227" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-04-13-42-08.webp" alt="Bedroom Design 228" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-04-14-02-55.webp" alt="Bedroom Design 229" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-04-14-04-44.webp" alt="Bedroom Design 230" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-04-14-06-11.webp" alt="Bedroom Design 231" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-29-18-39-12.webp" alt="Bedroom Design 232" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-29-18-41-18.webp" alt="Bedroom Design 233" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-29-18-47-01.webp" alt="Bedroom Design 234" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-29-18-48-54.webp" alt="Bedroom Design 235" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-30-14-11-35.webp" alt="Bedroom Design 236" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-30-14-13-39.webp" alt="Bedroom Design 237" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-30-14-34-22.webp" alt="Bedroom Design 238" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-30-18-10-24.webp" alt="Bedroom Design 239" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-30-18-21-14.webp" alt="Bedroom Design 240" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-01-30-18-23-00.webp" alt="Bedroom Design 241" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-07-14-56-10.webp" alt="Bedroom Design 242" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-07-14-57-17.webp" alt="Bedroom Design 243" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-07-14-59-16.webp" alt="Bedroom Design 244" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-07-17-15-10.webp" alt="Bedroom Design 245" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-07-17-15-50.webp" alt="Bedroom Design 246" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-07-17-16-40.webp" alt="Bedroom Design 247" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-13-20-12-01.webp" alt="Bedroom Design 248" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-13-20-13-37.webp" alt="Bedroom Design 249" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-02-13-20-16-07.webp" alt="Bedroom Design 250" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-03-31-06-44-22.webp" alt="Bedroom Design 251" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-03-31-07-06-19.webp" alt="Bedroom Design 252" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-03-31-07-09-06.webp" alt="Bedroom Design 253" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-03-31-09-56-52.webp" alt="Bedroom Design 254" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-03-31-09-57-36.webp" alt="Bedroom Design 255" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-03-31-09-58-30.webp" alt="Bedroom Design 256" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-03-31-10-02-14.webp" alt="Bedroom Design 257" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-05-19-09-17.webp" alt="Bedroom Design 258" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-05-19-09-54.webp" alt="Bedroom Design 259" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-05-19-10-50.webp" alt="Bedroom Design 260" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-05-19-16-09.webp" alt="Bedroom Design 261" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-05-19-17-05.webp" alt="Bedroom Design 262" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-05-19-18-19.webp" alt="Bedroom Design 263" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-08-12-33-54.webp" alt="Bedroom Design 264" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-08-12-34-54.webp" alt="Bedroom Design 265" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-08-12-35-50.webp" alt="Bedroom Design 266" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-08-12-40-09.webp" alt="Bedroom Design 267" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-08-12-40-56.webp" alt="Bedroom Design 268" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-08-12-41-43.webp" alt="Bedroom Design 269" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-19-18-28-57.webp" alt="Bedroom Design 270" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-19-18-29-46.webp" alt="Bedroom Design 271" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-19-18-31-01.webp" alt="Bedroom Design 272" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-19-18-32-38.webp" alt="Bedroom Design 273" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-26-15-03-37.webp" alt="Bedroom Design 274" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-26-15-04-39.webp" alt="Bedroom Design 275" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-26-15-08-21.webp" alt="Bedroom Design 276" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-26-15-10-15.webp" alt="Bedroom Design 277" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-04-26-15-11-55.webp" alt="Bedroom Design 278" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-08-15-34-55.webp" alt="Bedroom Design 279" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-08-15-36-16.webp" alt="Bedroom Design 280" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-08-15-38-20.webp" alt="Bedroom Design 281" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-08-15-39-38.webp" alt="Bedroom Design 282" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-08-15-55-45.webp" alt="Bedroom Design 283" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-08-16-11-11.webp" alt="Bedroom Design 284" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-08-16-22-56.webp" alt="Bedroom Design 285" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-31-09-59-49.webp" alt="Bedroom Design 286" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-31-10-00-56.webp" alt="Bedroom Design 287" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-31-10-01-57.webp" alt="Bedroom Design 288" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-31-10-43-18.webp" alt="Bedroom Design 289" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-31-10-43-57.webp" alt="Bedroom Design 290" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Enscape_2026-05-31-10-47-10.webp" alt="Bedroom Design 291" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01 (1).webp" alt="Bedroom Design 292" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01 2.webp" alt="Bedroom Design 293" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01 3.webp" alt="Bedroom Design 294" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01 4.webp" alt="Bedroom Design 295" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01 5.webp" alt="Bedroom Design 296" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01.webp" alt="Bedroom Design 297" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01_1.webp" alt="Bedroom Design 298" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01_2.webp" alt="Bedroom Design 299" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01_3.webp" alt="Bedroom Design 300" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_01_A.webp" alt="Bedroom Design 301" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_02 (1).webp" alt="Bedroom Design 302" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_02 2.webp" alt="Bedroom Design 303" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_02 3.webp" alt="Bedroom Design 304" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_02.webp" alt="Bedroom Design 305" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_02_A.webp" alt="Bedroom Design 306" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_03 2.webp" alt="Bedroom Design 307" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_03 3.webp" alt="Bedroom Design 308" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_03 4.webp" alt="Bedroom Design 309" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_03(1).webp" alt="Bedroom Design 310" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_03.webp" alt="Bedroom Design 311" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_04 2.webp" alt="Bedroom Design 312" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_04 3.webp" alt="Bedroom Design 313" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_04 4.webp" alt="Bedroom Design 314" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_04(1).webp" alt="Bedroom Design 315" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_04.webp" alt="Bedroom Design 316" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_05.webp" alt="Bedroom Design 317" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_1.webp" alt="Bedroom Design 318" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_1_1.webp" alt="Bedroom Design 319" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_2.webp" alt="Bedroom Design 320" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_2_1.webp" alt="Bedroom Design 321" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_3.webp" alt="Bedroom Design 322" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_3_1.webp" alt="Bedroom Design 323" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_4.webp" alt="Bedroom Design 324" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_4_1.webp" alt="Bedroom Design 325" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/GBR_4_2.webp" alt="Bedroom Design 326" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR OTION 1.webp" alt="Bedroom Design 327" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_01 (1).webp" alt="Bedroom Design 328" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_01.webp" alt="Bedroom Design 329" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_01_A.webp" alt="Bedroom Design 330" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_02(1).webp" alt="Bedroom Design 331" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_02.webp" alt="Bedroom Design 332" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_02_A.webp" alt="Bedroom Design 333" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_03.webp" alt="Bedroom Design 334" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_04(1).webp" alt="Bedroom Design 335" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_04.webp" alt="Bedroom Design 336" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_04_A(1).webp" alt="Bedroom Design 337" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_04_A.webp" alt="Bedroom Design 338" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_05.webp" alt="Bedroom Design 339" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_06.webp" alt="Bedroom Design 340" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/MBR_Bathroom_07.webp" alt="Bedroom Design 341" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Vimal 1.webp" alt="Bedroom Design 342" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/Vimal 2.webp" alt="Bedroom Design 343" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/WhatsApp Image 2025-09-15 at 7.03.37 PM (1).webp" alt="Bedroom Design 344" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/WhatsApp Image 2025-09-15 at 7.03.37 PM.webp" alt="Bedroom Design 345" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/m2.webp" alt="Bedroom Design 346" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/m3.webp" alt="Bedroom Design 347" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/mbr 1_Scene 18.webp" alt="Bedroom Design 348" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/mbr 1_Scene 4.webp" alt="Bedroom Design 349" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/mbr 1_Scene 5.webp" alt="Bedroom Design 350" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/mbr 1_Scene 6.webp" alt="Bedroom Design 351" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/mbr 1_Scene 7.webp" alt="Bedroom Design 352" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/mbr 2_Scene 7.webp" alt="Bedroom Design 353" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/mbr 2_Scene 9.webp" alt="Bedroom Design 354" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/pbr_Scene 12.webp" alt="Bedroom Design 355" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/pbr_Scene 14.webp" alt="Bedroom Design 356" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/pbr_Scene 15.webp" alt="Bedroom Design 357" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bedroom/pbr_Scene 17.webp" alt="Bedroom Design 358" loading="lazy">
+</div>
+
+
+</section>
+

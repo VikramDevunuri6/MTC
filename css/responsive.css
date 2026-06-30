@@ -1,0 +1,1360 @@
+/* ============================================================
+   MTC SPACES — RESPONSIVE CSS
+   Mobile (≤767px) | Tablet (768px–1023px) | Desktop (≥1024px)
+   Preserved: all design tokens, colors, branding, desktop layout
+   ============================================================ */
+
+/* ============================================================
+   SHARED UTILITIES — APPLY ACROSS ALL BREAKPOINTS
+   ============================================================ */
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Minimum touch targets */
+button, .btn-primary, .btn-secondary, .nav-cta,
+.testimonial-nav button, .quiz-submit, .form-submit,
+.back-btn, .nav-toggle {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ============================================================
+   HAMBURGER MENU — Hidden on desktop, shown on mobile/tablet
+   ============================================================ */
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  z-index: 1100;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.toggle-bar {
+  width: 24px;
+  height: 2px;
+  background: var(--ivory);
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+  display: block;
+}
+
+nav.scrolled .toggle-bar {
+  background: var(--charcoal);
+}
+
+/* Animate hamburger → X */
+.nav-toggle.open .toggle-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.open .toggle-bar:nth-child(2) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile nav drawer */
+.mobile-nav-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 29, 36, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 1050;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 80px 40px 60px;
+}
+
+.mobile-nav-drawer.open {
+  display: flex;
+}
+
+.mobile-nav-drawer a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--ivory);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+  text-align: center;
+}
+
+.mobile-nav-drawer a:hover {
+  color: var(--gold);
+}
+
+.mobile-nav-drawer .mobile-nav-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 16px 36px;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.mobile-nav-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid rgba(247, 242, 234, 0.2);
+  color: var(--ivory);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.mobile-nav-close:hover {
+  background: rgba(247, 242, 234, 0.1);
+}
+
+/* ============================================================
+   SECTION: TESTIMONIALS — add missing styles
+   ============================================================ */
+
+#testimonials {
+  padding: 120px 60px;
+  background: var(--ivory);
+}
+
+.testimonials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   DESKTOP (≥1024px) — stronger hierarchy for the Testimonials
+   header text. Scoped to #testimonials so the shared
+   .section-label / .section-title used elsewhere stay unchanged.
+   ============================================================ */
+@media (min-width: 1024px) {
+  /* "CLIENT STORIES" label: 10px -> 12px (+20%). Letter-spacing,
+     uppercase, color and weight inherit unchanged. */
+  #testimonials .section-label {
+    font-size: 12px;
+  }
+  /* Accent line before the label: 40px -> 48px (+20%); height/thickness unchanged */
+  #testimonials .section-label::before {
+    width: 48px;
+  }
+  /* "What our clients say about us" heading: 24px (UA default) -> 30px (+25%).
+     Font family, weight, line-height and the italic <em> on "us" inherit unchanged. */
+  #testimonials .section-title {
+    font-size: 30px;
+  }
+}
+
+
+/* ============================================================
+   TABLET — 768px to 1023px
+   ============================================================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* NAV */
+  nav {
+    padding: 20px 32px;
+  }
+  nav.scrolled {
+    padding: 14px 32px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-cta {
+    display: none;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  .nav-logo img {
+    height: 44px;
+  }
+
+  /* HERO */
+  .hero-content {
+    padding: 0 32px;
+  }
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 14px 32px;
+    font-size: 11px;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    padding: 0 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  /* PROJECTS */
+  #projects {
+    padding: 80px 0;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .project-card:first-child {
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
+  .project-img {
+    min-height: 320px;
+  }
+
+  /* TRUST */
+  #trust {
+    padding: 80px 32px;
+  }
+  .trust-top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 60px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-card {
+    padding: 40px 28px;
+  }
+  .stat-num {
+    font-size: 48px;
+  }
+
+  /* PHILOSOPHY */
+  #philosophy {
+    padding: 80px 32px;
+  }
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .philosophy-visual {
+    height: 420px;
+  }
+  .phil-img-main {
+    width: 90%;
+    height: 75%;
+  }
+  .phil-img-accent {
+    width: 50%;
+    height: 40%;
+  }
+
+  /* SERVICES */
+  #services {
+    padding: 80px 0;
+  }
+  .services-header {
+    padding: 0 32px;
+    margin-bottom: 40px;
+  }
+  .services-scroll-track {
+    padding: 0 32px;
+    gap: 16px;
+  }
+  .service-tile {
+    min-width: 300px;
+    height: 420px;
+  }
+  /* Always show service desc on tablet */
+  .service-tile .service-desc {
+    max-height: 80px;
+    opacity: 1;
+  }
+
+  /* JOURNEY */
+  #journey {
+    padding: 80px 32px;
+  }
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .journey-steps {
+    padding-left: 48px;
+  }
+
+  /* FACTORY */
+  #factory {
+    padding: 60px 0 0;
+    overflow: hidden;
+  }
+  .booking-bg-element,
+  .booking-bg-element-2 {
+    display: none;
+  }
+  .factory-header {
+    padding: 0 32px;
+    margin-bottom: 36px;
+  }
+  .factory-title {
+    font-size: 52px;
+  }
+  /* Tablet: 2-col grid, uniform row heights */
+  .factory-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 240px 200px 200px;
+    gap: 2px;
+  }
+  .fac-img-1 {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    height: auto;
+  }
+  .fac-img {
+    height: auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .fac-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .factory-brands {
+    overflow: hidden;
+    max-width: 100vw;
+  }
+  .brands-marquee {
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials {
+    padding: 80px 32px;
+  }
+  .testimonials-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .testimonial-slider {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 48px;
+  }
+  .compare-container {
+    height: 380px;
+    border-radius: 12px;
+  }
+  /* Touch support for compare slider on tablet */
+  .compare-container {
+    touch-action: none;
+  }
+
+  /* LEADERSHIP */
+  #leadership {
+    padding: 80px 32px;
+  }
+  .leaders-grid {
+    gap: 20px;
+  }
+  /* portrait sizing handled by aspect-ratio in main.css; columns handled by main.css breakpoints */
+  /* Always show leader info on tablet (no hover needed) */
+  .leader-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* EXPERIENCE */
+  #experience {
+    padding: 60px 32px;
+  }
+  .experience-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .experience-gallery {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 240px 180px;
+    gap: 4px;
+  }
+
+  /* BOOKING */
+  #booking {
+    padding: 80px 32px;
+  }
+  .booking-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .booking-title {
+    font-size: clamp(36px, 5vw, 56px);
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* QUIZ */
+  #quiz-style {
+    padding: 80px 32px;
+  }
+  .quiz-title {
+    font-size: 48px;
+  }
+  .quiz-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* FOOTER */
+  #footer-premium {
+    padding: 48px 32px 24px;
+  }
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE — max-width 767px
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* NAV */
+  nav {
+    padding: 16px 20px;
+  }
+  nav.scrolled {
+    padding: 12px 20px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-cta {
+    display: none;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  .nav-logo img {
+    height: 38px;
+  }
+
+  /* HERO */
+  #hero {
+    height: 100svh;
+  }
+  .hero-content {
+    padding: 0 24px;
+    max-width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-size: clamp(44px, 12vw, 72px);
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    margin-bottom: 36px;
+    padding: 0 4px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 16px 24px;
+    font-size: 11px;
+    text-align: center;
+    width: 100%;
+  }
+  .hero-scroll {
+    bottom: 24px;
+  }
+  .scroll-line {
+    height: 40px;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    padding: 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .section-title {
+    font-size: clamp(36px, 9vw, 52px);
+  }
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+  }
+
+  /* BOOKING — iPhone-safe */
+  #booking {
+    padding: 60px 20px;
+    overflow: hidden;
+    /* Use padding not margin so box stays within body width */
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .booking-bg-element,
+  .booking-bg-element-2 {
+    display: none;
+  }
+  .booking-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .booking-left {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .booking-title {
+    font-size: clamp(34px, 9vw, 52px);
+    line-height: 1.1;
+  }
+  .booking-eyebrow {
+    font-size: 9px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+  }
+  .booking-desc {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  .booking-assurances {
+    gap: 12px;
+  }
+  .assurance-item {
+    font-size: 13px;
+  }
+  /* Form wrapper — must not exceed section width */
+  .booking-form-wrapper {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  /* Form card */
+  .booking-form {
+    padding: 24px 16px;
+    border-radius: 16px;
+    gap: 13px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    /* Kill any shadow that bleeds right */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  }
+  .form-heading {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+  .form-field {
+    padding: 15px 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+  select.form-field {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235E626B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-color: #fff;
+    padding-right: 40px;
+  }
+  .form-submit {
+    padding: 17px;
+    font-size: 14px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+  .upload-block {
+    font-size: 13px;
+  }
+  .upload-block input[type="file"] {
+    font-size: 13px;
+  }
+  .checkbox-row {
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* PROJECTS */
+  #projects {
+    padding: 60px 0;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .project-card:first-child {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .project-img {
+    min-height: 260px;
+    height: 60vw;
+    max-height: 320px;
+  }
+  .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .project-label {
+    bottom: 16px;
+    left: 20px;
+  }
+  .project-name {
+    font-size: 20px;
+  }
+
+  /* TRUST */
+  #trust {
+    padding: 60px 20px;
+  }
+  .trust-top {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .trust-intro {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+  .trust-body {
+    font-size: 14px;
+    padding-top: 0;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+  .stat-card {
+    padding: 28px 20px;
+  }
+  .stat-num {
+    font-size: 40px;
+  }
+  .stat-unit {
+    font-size: 20px;
+  }
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+  .stat-desc {
+    font-size: 12px;
+  }
+
+  /* PHILOSOPHY */
+  #philosophy {
+    padding: 60px 20px;
+  }
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .philosophy-headline {
+    font-size: clamp(34px, 8vw, 52px);
+  }
+  .philosophy-body {
+    font-size: 14px;
+  }
+  .philosophy-visual {
+    height: 320px;
+  }
+  .phil-img-main {
+    width: 92%;
+    height: 78%;
+  }
+  .phil-img-accent {
+    width: 56%;
+    height: 38%;
+    padding: 20px;
+  }
+  .phil-quote {
+    font-size: 16px;
+  }
+
+  /* SERVICES */
+  #services {
+    padding: 60px 0;
+  }
+  .services-header {
+    padding: 0 20px;
+    margin-bottom: 28px;
+  }
+  .services-scroll-track {
+    padding: 0 20px;
+    gap: 12px;
+    /* On mobile allow proper touch scroll */
+    -webkit-overflow-scrolling: touch;
+    cursor: default;
+  }
+  .service-tile {
+    min-width: 260px;
+    height: 360px;
+    padding: 28px 24px;
+  }
+  .service-tile .service-desc {
+    max-height: 80px;
+    opacity: 1;
+  }
+  .service-num {
+    font-size: 36px;
+  }
+  .service-name {
+    font-size: 22px;
+  }
+  .service-arrow {
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    right: 20px;
+  }
+
+  /* JOURNEY */
+  #journey {
+    padding: 60px 20px;
+  }
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .journey-title {
+    font-size: clamp(34px, 8vw, 52px);
+  }
+  .journey-steps {
+    padding-left: 40px;
+  }
+  .journey-line, .journey-progress {
+    left: 12px;
+  }
+  .step-dot {
+    left: -40px;
+    top: 44px;
+  }
+  .step {
+    padding: 28px 0;
+  }
+  .step-title {
+    font-size: 22px;
+  }
+  .step-body {
+    font-size: 13px;
+  }
+
+  /* FACTORY */
+  #factory {
+    padding: 48px 0 0;
+    overflow: hidden;
+  }
+  .factory-header {
+    padding: 0 20px;
+    margin-bottom: 28px;
+  }
+  .factory-title {
+    font-size: 40px;
+    line-height: 1;
+  }
+  /* Stack factory images vertically on mobile for clean consistent layout */
+  .factory-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .fac-img {
+    width: 100%;
+    height: 56vw;
+    max-height: 260px;
+    overflow: hidden;
+    position: relative;
+  }
+  .fac-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .fac-img-1 {
+    height: 62vw;
+    max-height: 300px;
+    grid-row: auto;
+  }
+  /* Brands: prevent any width bleed */
+  .factory-brands {
+    padding: 20px 0;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  .brands-marquee {
+    overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  .brand-logo {
+    height: 54px;        /* +50% from 36px for better mobile visibility */
+    max-width: 180px;    /* lift the 120px cap so wide logos scale proportionally (was clamped by main.css) */
+  }
+  .brands-track {
+    gap: 36px;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials {
+    padding: 60px 20px;
+  }
+  .testimonials-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 0;
+  }
+  .testimonials-header .trust-body {
+    display: none; /* Save space on mobile */
+  }
+  .testimonial-slider {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 40px;
+  }
+  .compare-container {
+    height: 56vw;
+    min-height: 220px;
+    max-height: 320px;
+    border-radius: 12px;
+    touch-action: none;
+  }
+  .testimonial-content h3 {
+    font-size: 28px;
+  }
+  .testimonial-content p {
+    font-size: 14px;
+  }
+  .testimonial-nav {
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .testimonial-nav button {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+  #clientName {
+    font-size: 18px;
+  }
+
+  /* LEADERSHIP */
+  #leadership {
+    padding: 60px 20px;
+  }
+  .leadership-header {
+    margin-bottom: 40px;
+  }
+  .leaders-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  /* portrait sizing handled by aspect-ratio in main.css */
+  /* Always visible on mobile (no hover) */
+  .leader-info {
+    opacity: 1;
+    transform: translateY(0);
+    padding: 16px;
+  }
+  .leader-name {
+    font-size: 16px;
+  }
+  .leader-role {
+    font-size: 9px;
+  }
+  .lb-name {
+    font-size: 15px;
+  }
+  .lb-role {
+    font-size: 9px;
+  }
+  .leader-base {
+    padding: 14px 0;
+  }
+
+  /* EXPERIENCE */
+  #experience {
+    padding: 60px 20px;
+  }
+  .experience-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .experience-gallery {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 140px;
+    gap: 4px;
+  }
+  .gal-cell-1 {
+    grid-row: 1 / 3;
+  }
+  .experience-headline {
+    font-size: clamp(30px, 7vw, 44px);
+  }
+  .experience-body {
+    font-size: 14px;
+  }
+  .experience-stat {
+    gap: 14px;
+    padding: 20px 0;
+  }
+  .es-num {
+    font-size: 28px;
+    min-width: 80px;
+  }
+  .es-text {
+    font-size: 12px;
+  }
+
+  /* QUIZ */
+  #quiz-style {
+    padding: 60px 20px;
+  }
+  .quiz-title {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+  .quiz-subtitle {
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+  .quiz-question h3 {
+    font-size: 18px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .quiz-options {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+  }
+  .quiz-options label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.4;
+    padding: 6px 0;
+  }
+  .quiz-options input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-right: 0;
+  }
+  .quiz-textarea {
+    font-size: 16px; /* Prevent iOS zoom */
+    padding: 14px;
+  }
+  .quiz-input {
+    font-size: 16px;
+    padding: 12px 14px;
+  }
+  .quiz-submit {
+    padding: 18px;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+  .quiz-form {
+    gap: 20px;
+  }
+
+  /* FOOTER */
+  #footer-premium {
+    padding: 40px 20px 20px;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footer-container > span {
+    grid-column: 1;
+    text-align: center;
+    display: block;
+    margin-top: 8px;
+  }
+  .footer-column h4 {
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .footer-links-grid a {
+    font-size: 15px;
+  }
+  .footer-social {
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .footer-social a {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+  .footer-contact p {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .footer-bottom {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+  .footer-bottom span {
+    font-size: 12px;
+  }
+
+  /* MANIFESTO (if visible) */
+  #manifesto {
+    padding: 80px 0;
+  }
+  .manifesto-inner {
+    padding: 0 20px;
+  }
+  .manifesto-line {
+    font-size: clamp(22px, 6vw, 36px);
+    margin-bottom: 32px;
+    gap: 14px;
+    transform: translateX(-16px);
+  }
+  .manifesto-num {
+    font-size: 9px;
+    min-width: 28px;
+  }
+
+  /* REMOVE TRANSFORM ON MOBILE FOR BETTER PERF */
+  .project-card:hover .project-img,
+  .project-card:hover .project-visual,
+  .service-tile:hover .service-bg,
+  .gallery-card:hover img,
+  .fac-img:hover img {
+    transform: none;
+  }
+
+  /* PREVENT HORIZONTAL OVERFLOW */
+  section, .section-header, .manifesto-inner,
+  .trust-top, .philosophy-grid, .journey-grid,
+  .testimonial-slider, .experience-layout,
+  .booking-inner, .leaders-grid, .footer-container {
+    overflow-x: hidden;
+  }
+
+  /* FORM MESSAGE */
+  #formMessage, #quizMessage {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+}
+
+/* ============================================================
+   TOUCH-SPECIFIC: Compare Slider on Mobile
+   ============================================================ */
+
+@media (pointer: coarse) {
+  .compare-container {
+    cursor: default;
+  }
+  .slider-handle {
+    cursor: ew-resize;
+  }
+  /* Service scroll track: use native touch scroll */
+  .services-scroll-track {
+    cursor: default;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  .service-tile {
+    scroll-snap-align: start;
+  }
+}
+
+/* ============================================================
+   SERVICE DETAIL PAGES — living.html, bedroom.html, etc.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  .hero {
+    height: 55vw;
+    min-height: 260px;
+    max-height: 420px;
+  }
+
+  .hero-content {
+    bottom: 32px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+
+  .hero-content p {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .back-btn {
+    top: 16px;
+    left: 16px;
+    padding: 11px 18px;
+    font-size: 13px;
+    border-radius: 999px;
+  }
+
+  .room-intro {
+    margin: 60px auto 40px;
+    padding: 0 20px;
+  }
+
+  .room-intro h2 {
+    font-size: clamp(30px, 8vw, 44px);
+    margin-top: 14px;
+    margin-bottom: 14px;
+  }
+
+  .room-intro p {
+    font-size: 14px;
+  }
+
+  .gallery {
+    width: 100%;
+    padding: 0 16px 80px;
+    gap: 16px;
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card img {
+    height: 68vw;
+    max-height: 320px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .hero {
+    height: 55vh;
+    min-height: 320px;
+  }
+
+  .hero-content {
+    bottom: 56px;
+    left: 40px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(52px, 8vw, 80px);
+  }
+
+  .back-btn {
+    top: 20px;
+    left: 20px;
+  }
+
+  .room-intro {
+    margin: 72px auto 48px;
+    padding: 0 32px;
+  }
+
+  .room-intro h2 {
+    font-size: clamp(40px, 6vw, 56px);
+  }
+
+  .gallery {
+    width: min(1200px, 92%);
+    gap: 20px;
+    padding-bottom: 80px;
+  }
+
+  .gallery-card img {
+    height: 340px;
+  }
+
+}
+
+/* ============================================================
+   GLOBAL — PREVENT OVERFLOW, SCROLLBAR BLEED, iOS QUIRKS
+   ============================================================ */
+
+/* The scrollbar on iOS Safari takes up layout space and shifts
+   content, clipping elements near the right edge.
+   Solution: suppress the vertical scrollbar width contribution
+   by making html overflow-y scroll but hide the bar visually. */
+
+html {
+  overflow-x: hidden;
+  /* Scrollbar width = 0 so it doesn't push content */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari / iOS */
+  width: 0;
+  height: 0;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  /* Never wider than the actual viewport */
+  max-width: 100%;
+}
+
+/* Every direct child of body must stay within bounds */
+body > * {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* iOS-specific: always 16px to prevent zoom, fix select */
+@supports (-webkit-touch-callout: none) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  select {
+    -webkit-appearance: none;
+  }
+  .services-scroll-track {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ============================================================
+   FINAL SAFETY NET — iphone clipping fix
+   Ensures nothing can be wider than the viewport.
+   Applied last so it wins over everything else.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* Nuclear option for the booking section card clip */
+  #booking,
+  #booking .booking-inner,
+  #booking .booking-left,
+  #booking .booking-form-wrapper,
+  #booking .booking-form {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure the form card shadow doesn't bleed off-screen */
+  #booking .booking-form {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10) !important;
+    overflow: hidden !important;
+  }
+
+  /* All inputs, buttons — no chance of overflow */
+  .form-field,
+  .form-submit,
+  .quiz-textarea,
+  .quiz-input {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent any section from being wider than screen */
+  section {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}

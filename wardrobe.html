@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Balcony | MTC Spaces</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --ivory:#F7F2EA;
+  --charcoal:#1A1D24;
+  --gold:#C2E03A;
+  --light-text:#6B7280;
+  --border:#E5DED2;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-family:'DM Sans',sans-serif;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:70vh;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
+
+.hero-content{
+  position:absolute;
+  bottom:80px;
+  left:80px;
+  color:white;
+}
+
+.hero-content p{
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.hero-content h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:92px;
+  font-weight:300;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+  position:fixed;
+  top:24px;
+  left:24px;
+  z-index:999;
+  text-decoration:none;
+  background:white;
+  color:var(--charcoal);
+  padding:14px 24px;
+  border-radius:999px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  transition:.3s;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* INTRO */
+
+.room-intro{
+  max-width:900px;
+  margin:100px auto 60px;
+  text-align:center;
+  padding:0 24px;
+}
+
+.room-intro span{
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--light-text);
+}
+
+.room-intro h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;
+  margin-top:20px;
+  margin-bottom:20px;
+  font-weight:300;
+}
+
+.room-intro p{
+  color:var(--light-text);
+  line-height:1.8;
+}
+
+/* GALLERY */
+
+.gallery{
+  width:min(1400px,90%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  padding-bottom:120px;
+}
+
+.gallery-card{
+  overflow:hidden;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 20px 60px rgba(0,0,0,.06);
+  transition:.4s;
+}
+
+.gallery-card img{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.23,1,.32,1);
+}
+
+.gallery-card:hover{
+  transform:translateY(-8px);
+}
+
+.gallery-card:hover img{
+  transform:scale(1.08);
+}
+
+/* ANIMATION */
+
+.fade-up{
+  opacity:0;
+  transform:translateY(50px);
+  animation:fadeUp .8s ease forwards;
+}
+
+.gallery-card:nth-child(2){animation-delay:.1s;}
+.gallery-card:nth-child(3){animation-delay:.2s;}
+.gallery-card:nth-child(4){animation-delay:.3s;}
+.gallery-card:nth-child(5){animation-delay:.4s;}
+.gallery-card:nth-child(6){animation-delay:.5s;}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:1024px){
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-content h1{
+    font-size:64px;
+  }
+}
+
+@media(max-width:768px){
+
+  .gallery{
+    grid-template-columns:1fr;
+  }
+
+  .hero-content{
+    left:24px;
+    bottom:40px;
+  }
+
+  .hero-content h1{
+    font-size:48px;
+  }
+
+  .room-intro h2{
+    font-size:42px;
+  }
+}
+
+
+/* ---- ENHANCED RESPONSIVE (injected) ---- */
+
+/* Prevent horizontal scroll */
+html, body { overflow-x: hidden; width: 100%; }
+img { max-width: 100%; height: auto; }
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Touch target */
+.back-btn { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Focus */
+a:focus-visible, button:focus-visible { outline: 2px solid #C2E03A; outline-offset: 2px; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero { height: 55vh; min-height: 320px; }
+  .hero-content { bottom: 56px; left: 40px; }
+  .hero-content h1 { font-size: clamp(52px, 8vw, 80px); }
+  .back-btn { top: 20px; left: 20px; }
+  .room-intro { margin: 72px auto 48px; padding: 0 32px; }
+  .room-intro h2 { font-size: clamp(40px, 6vw, 56px); }
+  .gallery { width: min(1200px, 92%); gap: 20px; padding-bottom: 80px; grid-template-columns: repeat(2,1fr); }
+  .gallery-card img { height: 340px; }
+  .gallery-card:hover { transform: translateY(-4px); }
+}
+
+@media (max-width: 767px) {
+  .hero { height: 56vw; min-height: 260px; max-height: 420px; }
+  .hero-content { bottom: 28px; left: 16px; right: 16px; }
+  .hero-content h1 { font-size: clamp(34px, 10vw, 52px); }
+  .hero-content p { font-size: 10px; letter-spacing: 2px; }
+  .back-btn { top: 14px; left: 14px; padding: 10px 16px; font-size: 13px; }
+  .room-intro { margin: 56px auto 36px; padding: 0 20px; }
+  .room-intro h2 { font-size: clamp(28px, 8vw, 40px); margin-top: 12px; margin-bottom: 12px; }
+  .room-intro p { font-size: 14px; }
+  .gallery { width: 100%; padding: 0 16px 72px; gap: 16px; grid-template-columns: 1fr; }
+  .gallery-card img { height: 68vw; max-height: 320px; }
+  .gallery-card:hover { transform: none; }
+  .gallery-card:hover img { transform: none; }
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">
+← Back to Home
+</a>
+
+
+
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="images/services/wardrobe/thumb.webp">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+<p>MTC SPACES</p>
+<h1>Wardrobe</h1>
+</div>
+
+</section>
+
+<!-- INTRO -->
+
+<section class="room-intro">
+
+<span>Luxury Wardrobe Collection</span>
+
+<h2>Wardrobe Designs</h2>
+
+<p>
+Explore our bespoke wardrobe designs crafted with intelligent
+storage solutions, premium finishes and timeless aesthetics.
+Every wardrobe is designed to maximize functionality while
+enhancing the elegance of your living space.
+</p>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="gallery">
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/1. CBR_Wardrobe.webp" alt="Wardrobe Design 1" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/1.webp" alt="Wardrobe Design 2" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/12. MBR_05.webp" alt="Wardrobe Design 3" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/15. MBR_Wardrobe and Study.webp" alt="Wardrobe Design 4" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/17. CBR_Study View.webp" alt="Wardrobe Design 5" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/2.webp" alt="Wardrobe Design 6" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/20. GBR_02.webp" alt="Wardrobe Design 7" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/3. MBR_03.webp" alt="Wardrobe Design 8" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/6. MBR_06.webp" alt="Wardrobe Design 9" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/6.webp" alt="Wardrobe Design 10" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/7.webp" alt="Wardrobe Design 11" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/B3_Wardrobe View.webp" alt="Wardrobe Design 12" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Bedroom 02_3.webp" alt="Wardrobe Design 13" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Bedroom 1_ Wardrobe.webp" alt="Wardrobe Design 14" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Bedroom 4_3.webp" alt="Wardrobe Design 15" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Bedroom_01_Wardrobe Only.webp" alt="Wardrobe Design 16" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Bedroom_03_03(A).webp" alt="Wardrobe Design 17" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Bedroom_Wardrobe_01.webp" alt="Wardrobe Design 18" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Bedroom_Wardrobe_02.webp" alt="Wardrobe Design 19" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_01 (1).webp" alt="Wardrobe Design 20" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_01 (2).webp" alt="Wardrobe Design 21" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_01 (3).webp" alt="Wardrobe Design 22" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_01 (4).webp" alt="Wardrobe Design 23" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_01(1).webp" alt="Wardrobe Design 24" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_01.webp" alt="Wardrobe Design 25" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02 (1).webp" alt="Wardrobe Design 26" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02 (2).webp" alt="Wardrobe Design 27" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02 (3).webp" alt="Wardrobe Design 28" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02 (4).webp" alt="Wardrobe Design 29" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02(1).webp" alt="Wardrobe Design 30" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02.webp" alt="Wardrobe Design 31" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02_A.webp" alt="Wardrobe Design 32" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_02_B.webp" alt="Wardrobe Design 33" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_03 (1).webp" alt="Wardrobe Design 34" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_03 (2).webp" alt="Wardrobe Design 35" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_03 (3).webp" alt="Wardrobe Design 36" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_03(1).webp" alt="Wardrobe Design 37" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_03.webp" alt="Wardrobe Design 38" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_03_A.webp" alt="Wardrobe Design 39" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_04 (1).webp" alt="Wardrobe Design 40" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_04 (2).webp" alt="Wardrobe Design 41" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_04.webp" alt="Wardrobe Design 42" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_04A.webp" alt="Wardrobe Design 43" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_04_Open Wardrobe.webp" alt="Wardrobe Design 44" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_05(1).webp" alt="Wardrobe Design 45" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_05.webp" alt="Wardrobe Design 46" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_2.webp" alt="Wardrobe Design 47" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_4.webp" alt="Wardrobe Design 48" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_BedView_01.webp" alt="Wardrobe Design 49" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_BedView_02.webp" alt="Wardrobe Design 50" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_BedView_03.webp" alt="Wardrobe Design 51" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_BedView_03_A.webp" alt="Wardrobe Design 52" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/CBR_Wardobe Only.webp" alt="Wardrobe Design 53" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Design Project_TS - Bedroom_01_MBR_Dresser.webp" alt="Wardrobe Design 54" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Design Project_TS - Bedroom_01_MBR_Wardrobe.webp" alt="Wardrobe Design 55" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_01 (1).webp" alt="Wardrobe Design 56" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_01.webp" alt="Wardrobe Design 57" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_01_1.webp" alt="Wardrobe Design 58" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_01_2.webp" alt="Wardrobe Design 59" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_01_3.webp" alt="Wardrobe Design 60" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_02 (1).webp" alt="Wardrobe Design 61" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_02.webp" alt="Wardrobe Design 62" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_02_A_Wardrobe.webp" alt="Wardrobe Design 63" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_03 (1).webp" alt="Wardrobe Design 64" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_03 (2).webp" alt="Wardrobe Design 65" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_03(1).webp" alt="Wardrobe Design 66" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_03.webp" alt="Wardrobe Design 67" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_04 (1).webp" alt="Wardrobe Design 68" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_04.webp" alt="Wardrobe Design 69" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_3.webp" alt="Wardrobe Design 70" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_3_1.webp" alt="Wardrobe Design 71" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/GBR_Wardrobe.webp" alt="Wardrobe Design 72" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/KBR_03.webp" alt="Wardrobe Design 73" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR Wardrobe_01.webp" alt="Wardrobe Design 74" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR Wardrobe_02.webp" alt="Wardrobe Design 75" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_01 (1).webp" alt="Wardrobe Design 76" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_01 (2).webp" alt="Wardrobe Design 77" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_01.webp" alt="Wardrobe Design 78" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_02.webp" alt="Wardrobe Design 79" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03 (1)(1).webp" alt="Wardrobe Design 80" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03 (1).webp" alt="Wardrobe Design 81" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03 (2)(1).webp" alt="Wardrobe Design 82" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03 (2).webp" alt="Wardrobe Design 83" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03 (3)(1).webp" alt="Wardrobe Design 84" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03 (3).webp" alt="Wardrobe Design 85" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03 (4).webp" alt="Wardrobe Design 86" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03.webp" alt="Wardrobe Design 87" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03_A (1).webp" alt="Wardrobe Design 88" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03_A.webp" alt="Wardrobe Design 89" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_03_B.webp" alt="Wardrobe Design 90" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_04.webp" alt="Wardrobe Design 91" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_05.webp" alt="Wardrobe Design 92" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_06.webp" alt="Wardrobe Design 93" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Dresser (1).webp" alt="Wardrobe Design 94" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Dresser.webp" alt="Wardrobe Design 95" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe Only (1).webp" alt="Wardrobe Design 96" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe Only (2).webp" alt="Wardrobe Design 97" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe Only.webp" alt="Wardrobe Design 98" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe Only_02 (1).webp" alt="Wardrobe Design 99" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe Only_02.webp" alt="Wardrobe Design 100" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe_01 (1).webp" alt="Wardrobe Design 101" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe_01.webp" alt="Wardrobe Design 102" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/MBR_Wardrobe_02_Black.webp" alt="Wardrobe Design 103" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Sample_03.webp" alt="Wardrobe Design 104" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Ujjwal_Scene 1.webp" alt="Wardrobe Design 105" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Ujjwal_Scene 2.webp" alt="Wardrobe Design 106" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Ujjwal_Scene 3.webp" alt="Wardrobe Design 107" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/WI Wardrobe_01.webp" alt="Wardrobe Design 108" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Wardrobe.webp" alt="Wardrobe Design 109" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Wardrobe_01(1).webp" alt="Wardrobe Design 110" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Wardrobe_01.webp" alt="Wardrobe Design 111" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Wardrobe_01_B.webp" alt="Wardrobe Design 112" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/Wardrobe_02.webp" alt="Wardrobe Design 113" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/wardrobe/thumb.webp" alt="Wardrobe Design 114" loading="lazy">
+</div>
+
+
+</section>
+

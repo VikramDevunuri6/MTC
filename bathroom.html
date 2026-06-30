@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Balcony | MTC Spaces</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --ivory:#F7F2EA;
+  --charcoal:#1A1D24;
+  --gold:#C2E03A;
+  --light-text:#6B7280;
+  --border:#E5DED2;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-family:'DM Sans',sans-serif;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:70vh;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
+
+.hero-content{
+  position:absolute;
+  bottom:80px;
+  left:80px;
+  color:white;
+}
+
+.hero-content p{
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.hero-content h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:92px;
+  font-weight:300;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+  position:fixed;
+  top:24px;
+  left:24px;
+  z-index:999;
+  text-decoration:none;
+  background:white;
+  color:var(--charcoal);
+  padding:14px 24px;
+  border-radius:999px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  transition:.3s;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* INTRO */
+
+.room-intro{
+  max-width:900px;
+  margin:100px auto 60px;
+  text-align:center;
+  padding:0 24px;
+}
+
+.room-intro span{
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--light-text);
+}
+
+.room-intro h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;
+  margin-top:20px;
+  margin-bottom:20px;
+  font-weight:300;
+}
+
+.room-intro p{
+  color:var(--light-text);
+  line-height:1.8;
+}
+
+/* GALLERY */
+
+.gallery{
+  width:min(1400px,90%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  padding-bottom:120px;
+}
+
+.gallery-card{
+  overflow:hidden;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 20px 60px rgba(0,0,0,.06);
+  transition:.4s;
+}
+
+.gallery-card img{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.23,1,.32,1);
+}
+
+.gallery-card:hover{
+  transform:translateY(-8px);
+}
+
+.gallery-card:hover img{
+  transform:scale(1.08);
+}
+
+/* ANIMATION */
+
+.fade-up{
+  opacity:0;
+  transform:translateY(50px);
+  animation:fadeUp .8s ease forwards;
+}
+
+.gallery-card:nth-child(2){animation-delay:.1s;}
+.gallery-card:nth-child(3){animation-delay:.2s;}
+.gallery-card:nth-child(4){animation-delay:.3s;}
+.gallery-card:nth-child(5){animation-delay:.4s;}
+.gallery-card:nth-child(6){animation-delay:.5s;}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:1024px){
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-content h1{
+    font-size:64px;
+  }
+}
+
+@media(max-width:768px){
+
+  .gallery{
+    grid-template-columns:1fr;
+  }
+
+  .hero-content{
+    left:24px;
+    bottom:40px;
+  }
+
+  .hero-content h1{
+    font-size:48px;
+  }
+
+  .room-intro h2{
+    font-size:42px;
+  }
+}
+
+
+/* ---- ENHANCED RESPONSIVE (injected) ---- */
+
+/* Prevent horizontal scroll */
+html, body { overflow-x: hidden; width: 100%; }
+img { max-width: 100%; height: auto; }
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Touch target */
+.back-btn { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Focus */
+a:focus-visible, button:focus-visible { outline: 2px solid #C2E03A; outline-offset: 2px; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero { height: 55vh; min-height: 320px; }
+  .hero-content { bottom: 56px; left: 40px; }
+  .hero-content h1 { font-size: clamp(52px, 8vw, 80px); }
+  .back-btn { top: 20px; left: 20px; }
+  .room-intro { margin: 72px auto 48px; padding: 0 32px; }
+  .room-intro h2 { font-size: clamp(40px, 6vw, 56px); }
+  .gallery { width: min(1200px, 92%); gap: 20px; padding-bottom: 80px; grid-template-columns: repeat(2,1fr); }
+  .gallery-card img { height: 340px; }
+  .gallery-card:hover { transform: translateY(-4px); }
+}
+
+@media (max-width: 767px) {
+  .hero { height: 56vw; min-height: 260px; max-height: 420px; }
+  .hero-content { bottom: 28px; left: 16px; right: 16px; }
+  .hero-content h1 { font-size: clamp(34px, 10vw, 52px); }
+  .hero-content p { font-size: 10px; letter-spacing: 2px; }
+  .back-btn { top: 14px; left: 14px; padding: 10px 16px; font-size: 13px; }
+  .room-intro { margin: 56px auto 36px; padding: 0 20px; }
+  .room-intro h2 { font-size: clamp(28px, 8vw, 40px); margin-top: 12px; margin-bottom: 12px; }
+  .room-intro p { font-size: 14px; }
+  .gallery { width: 100%; padding: 0 16px 72px; gap: 16px; grid-template-columns: 1fr; }
+  .gallery-card img { height: 68vw; max-height: 320px; }
+  .gallery-card:hover { transform: none; }
+  .gallery-card:hover img { transform: none; }
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">
+← Back to Home
+</a>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <img src="images/services/bathroom/4. Bathroom_01.webp">
+    
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+    <p>MTC SPACES</p>
+    <h1>Bathroom</h1>
+    </div>
+    
+    </section>
+    
+    <!-- INTRO -->
+    
+    <section class="room-intro">
+    
+    <span>Luxury Bathroom Collection</span>
+    
+    <h2>Bathroom Designs</h2>
+    
+    <p>
+    Explore our curated bathroom interiors designed with elegance,
+    comfort and premium finishes that transform everyday routines
+    into luxurious experiences.
+    </p>
+    
+    </section>
+    
+    <!-- GALLERY -->
+    
+    <section class="gallery">
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/01.webp" alt="Bathroom Design 1" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/02.webp" alt="Bathroom Design 2" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/03.webp" alt="Bathroom Design 3" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/04.webp" alt="Bathroom Design 4" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/05.webp" alt="Bathroom Design 5" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/06.webp" alt="Bathroom Design 6" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/2. CBR_Shower Glass Partition.webp" alt="Bathroom Design 7" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/4. Bathroom_01.webp" alt="Bathroom Design 8" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/4. Bathroom_Entrance.webp" alt="Bathroom Design 9" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/4.1. Bathroom_Entrance.webp" alt="Bathroom Design 10" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/5. Bathroom_02.webp" alt="Bathroom Design 11" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/5. Bathroom_Vanity.webp" alt="Bathroom Design 12" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/5. Common Bathroom_A.webp" alt="Bathroom Design 13" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/5.1. Bathroom_Vanity.webp" alt="Bathroom Design 14" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/6. Bathroom_03.webp" alt="Bathroom Design 15" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/6. Bathroom_Window.webp" alt="Bathroom Design 16" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1 Iteration1_Scene 1 (2).webp" alt="Bathroom Design 17" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1 Iteration1_Scene 1.webp" alt="Bathroom Design 18" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1 Iteration1_Scene 2 (2).webp" alt="Bathroom Design 19" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1 Iteration1_Scene 2.webp" alt="Bathroom Design 20" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1 Iteration2_Scene 1.webp" alt="Bathroom Design 21" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1 Iteration2_Scene 2.webp" alt="Bathroom Design 22" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1_Scene 1 (2).webp" alt="Bathroom Design 23" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1_Scene 1 2.webp" alt="Bathroom Design 24" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1_Scene 1 3.webp" alt="Bathroom Design 25" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1_Scene 1.webp" alt="Bathroom Design 26" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 1_Scene 2.webp" alt="Bathroom Design 27" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2 Iteration1_Scene 1 2.webp" alt="Bathroom Design 28" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2 Iteration1_Scene 1.webp" alt="Bathroom Design 29" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2 Iteration1_Scene 2 2.webp" alt="Bathroom Design 30" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2 Iteration1_Scene 2.webp" alt="Bathroom Design 31" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2_Scene 1 (2).webp" alt="Bathroom Design 32" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2_Scene 1 2.webp" alt="Bathroom Design 33" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2_Scene 1 3.webp" alt="Bathroom Design 34" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2_Scene 1.webp" alt="Bathroom Design 35" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 2_Scene 2.webp" alt="Bathroom Design 36" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3 Iteration1_Scene 1 2.webp" alt="Bathroom Design 37" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3 Iteration1_Scene 1.webp" alt="Bathroom Design 38" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3 Iteration1_Scene 2.webp" alt="Bathroom Design 39" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3 Iteration2_Scene 1.webp" alt="Bathroom Design 40" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3 Iteration2_Scene 2.webp" alt="Bathroom Design 41" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3_Scene 1 2.webp" alt="Bathroom Design 42" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3_Scene 1 3.webp" alt="Bathroom Design 43" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3_Scene 1 4.webp" alt="Bathroom Design 44" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 3_Scene 1.webp" alt="Bathroom Design 45" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Bathroom 4_Scene 1 (2).webp" alt="Bathroom Design 46" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/CBR_04_Bathroom.webp" alt="Bathroom Design 47" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Enscape_2026-01-04-14-15-20.webp" alt="Bathroom Design 48" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Enscape_2026-01-04-14-21-33.webp" alt="Bathroom Design 49" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Enscape_2026-04-05-19-20-18.webp" alt="Bathroom Design 50" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Enscape_2026-04-05-19-29-06.webp" alt="Bathroom Design 51" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Enscape_2026-04-08-12-36-42.webp" alt="Bathroom Design 52" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Enscape_2026-04-08-12-44-02.webp" alt="Bathroom Design 53" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/Enscape_2026-04-21-17-10-31.webp" alt="Bathroom Design 54" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/MBR_Bathroom_07.webp" alt="Bathroom Design 55" loading="lazy">
+</div>
+
+<div class="gallery-card fade-up">
+<img src="images/services/bathroom/thumb.webp" alt="Bathroom Design 56" loading="lazy">
+</div>
+
+
+    </section>
